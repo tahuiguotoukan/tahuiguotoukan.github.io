@@ -4,13 +4,11 @@
     <meta charset="utf-8">
     <title>毕业设计展</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-	<div id='wx_pic' style='margin:0 auto;display:none;'>
-	<img src='image/微信图片_20170525163022.jpg' />
-	</div>
+	
     <!-- Link Swiper's CSS -->
     <link rel="stylesheet" href="css/swiper.css">
 	<link rel="stylesheet" type="text/css" href="css/animate.min.css"/>
-	
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     <!-- Demo styles -->
     <style>
     html, body {
@@ -111,6 +109,36 @@
 		}
 	}
     </style>
+    <div id='wx_pic' style='margin:0 auto;display:none;'>
+		<img src='image/微信图片_20170525163022.jpg' />
+	</div>
+	<script type="text/javascript">
+		/*wx.config({
+			debug: false,
+			appId: '****************',
+			timestamp: 1459005116,
+			nonceStr: 'LR4KSjtNRNzxXZpK',
+			signature: '103190ddf7e69bb9429440c086033adb9880c07a',
+			jsApiList: [
+			'checkJsApi',
+			'onMenuShareTimeline',
+			'onMenuShareAppMessage'
+			]
+		});*/
+		wx.ready(function () {
+			var shareData = {
+			title: '微信分享链接美化',
+			desc: '让分享的外部链接自定义标题、缩略图、描述，并去掉网址',
+			link: 'http://wcj.mwkj.net/00000/1.html',
+			imgUrl: 'http://wcj.mwkj.net/00000/upload/2016/201603262213069902.jpg'
+			};
+			wx.onMenuShareAppMessage(shareData);
+			wx.onMenuShareTimeline(shareData);
+			});
+			wx.error(function (res) {
+			alert(res.errMsg);
+		});
+	</script>
 </head>
 <body>
 	<div id="music">
