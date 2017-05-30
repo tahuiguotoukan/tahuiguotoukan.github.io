@@ -3,6 +3,7 @@
 	height: 20%;
 	float: left;
 	position: relative;
+	transform-origin: center;
 }
 .page-5-editor{
 	width: 100%;
