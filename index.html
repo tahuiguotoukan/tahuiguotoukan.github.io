@@ -314,7 +314,8 @@
 
     <!-- Initialize Swiper -->
     <script>
-    var swiper_1 = new Swiper('.swiper-first', {
+    onload = function(){
+    	var swiper_1 = new Swiper('.swiper-first', {
         paginationClickable: true,
         preloadImages:false,
         direction: 'vertical',
@@ -337,6 +338,8 @@
 			
 		}
     });
+    }
+    
     
     var swiper_2 = new Swiper('.swiper-second', {
         pagination: '.swiper-pagination',
