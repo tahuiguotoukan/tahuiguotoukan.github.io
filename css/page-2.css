@@ -58,9 +58,11 @@
 }
 .img-move1{
 	animation-name: img-move1;
+	animation-timing-function: linear;
 }
 .img-move2{
 	animation-name: img-move2;
+	animation-timing-function: linear;
 }
 @keyframes img-move1{
 	from{opacity: 1;}
@@ -125,6 +127,7 @@
 }
 .ani-editor-2{
 	animation-name: ani-editor-2;
+	animation-timing-function: linear;
 }
 @keyframes ani-editor-2{
 	from{right: -100%;}
@@ -132,6 +135,7 @@
 }
 .ani-name-2{
 	animation-name: ani-name-2;
+	animation-timing-function: linear;
 }
 @keyframes ani-name-2{
 	from{left: -100%;}
@@ -184,6 +188,7 @@
 }
 .bg-move{
 	animation-name: bg-move;
+	animation-timing-function: linear;
 }
 @keyframes bg-move{
 	0%{width: 100%;}
@@ -199,6 +204,7 @@
 }
 .eraser-move{
 	animation-name: eraser-move;
+	animation-timing-function: linear;
 }
 @keyframes eraser-move{
 	0%,

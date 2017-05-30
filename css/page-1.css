@@ -10,6 +10,7 @@
 }
 .ani_1{
 	animation-name: ani_1;
+	animation-timing-function: linear;
 }
 @keyframes ani_1{
 	0% {left: -26%; transform: skewX(-45deg);}
@@ -28,6 +29,7 @@
 }
 .ani_2{
 	animation-name: ani_2;
+	animation-timing-function: linear;
 }
 @keyframes ani_2{
 	from{right: -30%; top: -30%; transform: rotate(180deg);}
@@ -45,6 +47,7 @@
 }
 .ani_3{
 	animation-name: ani_3;
+	animation-timing-function: linear;
 }
 @keyframes ani_3{
 	from{opacity: 0;width: 0;height: 0;}
@@ -61,6 +64,7 @@
 }
 .ani_4{
 	animation-name: ani_4;
+	animation-timing-function: linear;
 }
 @keyframes ani_4{
 	from{right: -66.7%}
@@ -78,6 +82,7 @@
 }
 .ani_5{
 	animation-name: ani_5;
+	animation-timing-function: linear;
 }
 @keyframes ani_5{
 	from{left: -59.7%; bottom: -23.6%; transform: rotate(-180deg);}
@@ -95,6 +100,7 @@
 }
 .ani_6{
 	animation-name: ani_6;
+	animation-timing-function: linear;
 }
 @keyframes ani_6{
 	from{width: 0; height: 0; top: 25.9%; left: 29.3%; transform: rotate(0);}
@@ -111,6 +117,7 @@
 }
 .ani_7{
 	animation-name: ani_7;
+	animation-timing-function: linear;
 }
 @keyframes ani_7{
 	from{height: 0;}

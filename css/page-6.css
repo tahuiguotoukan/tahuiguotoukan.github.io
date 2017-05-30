@@ -38,15 +38,19 @@
 }
 .page-6-1{
 	animation-name: page-6-1;
+	animation-timing-function: linear;
 }
 .page-6-2{
 	animation-name: page-6-2;
+	animation-timing-function: linear;
 }
 .page-6-3{
 	animation-name: page-6-3;
+	animation-timing-function: linear;
 }
 .page-6-4{
 	animation-name: page-6-4;
+	animation-timing-function: linear;
 }
 @keyframes page-6-1{
 	from{left: -50%;opacity: 0;}
