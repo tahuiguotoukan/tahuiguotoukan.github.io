@@ -10,6 +10,7 @@
 }
 .bg{
 	animation-name: bg;
+	animation-timing-function: linear;
 }
 @keyframes bg{
 	0% {opacity: 0; width: 130%;height: 130%;left: -15%;top: -15%;}
