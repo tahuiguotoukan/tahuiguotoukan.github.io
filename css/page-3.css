@@ -1,0 +1,90 @@
+.page-3-bg{
+	width: 80%;
+    height: 80%;
+    margin: auto;
+    transform: rotate(0deg);
+    transform-origin:50% 3%;
+	background-image: url(../image/20170526005310.png);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+    position: relative;
+    top: 16%;
+}
+.rock{
+	animation-name: rock;
+	animation-timing-function:linear;
+}
+@keyframes rock{
+	0% {transform: rotate(0deg);}
+	25% {transform: rotate(10deg);}
+	50% {transform: rotate(0deg);}
+	75% {transform: rotate(-10deg);}
+	100% {transform: rotate(0deg);}
+}
+
+.page-3-photo{
+	width: 90%;
+    height: 76%;
+    /*margin: auto;*/
+    position: absolute;
+    bottom: 5%;
+    left: 6%;
+    border-radius: 10px;
+    background: yellow;
+    
+}
+.page-3-photo-1{
+	z-index: 7;
+}
+.page-3-photo-2{
+	z-index: 6;
+}
+.page-3-photo-3{
+	z-index: 5;
+}
+.page-3-photo-4{
+	z-index: 4;
+}
+.page-3-photo-5{
+	z-index: 3;
+}
+.page-3-photo-6{
+	z-index: 2;
+}
+.page-3-photo-7{
+	z-index: 1;
+}
+.rota-l{
+	animation-name: rota-l;
+	transform-origin:0 0;
+	animation-timing-function:linear;
+}
+.rota-r{
+	animation-name: rota-r;
+	transform-origin:100% 0;
+	animation-timing-function:linear;
+}
+@keyframes rota-l{
+	0% {bottom: 5%;transform: rotate(0deg);}
+	25% {bottom: 5%;transform: rotate(10deg);}
+	100% {bottom: -1000px;transform: rotate(10deg);}
+}
+@keyframes rota-r{
+	0% {bottom: 5%;transform: rotate(0deg);}
+	25% {bottom: 5%;transform: rotate(-10deg);}
+	100% {bottom: -1000px;transform: rotate(-10deg);}
+}
+.wenan-3{
+	width: 0%;
+	height: 0%;
+    position: absolute;
+    top: 4%;
+    left: 13%;
+}
+.ani-wenan-3{
+	animation-name: ani-wenan-3;
+}
+@keyframes ani-wenan-3{
+	0%{left: 50%;top: 11%;width: 0;height: 0;opacity: 0;}
+	100%{left: 13%;top: 4%;width: 74%; height: 14%;opacity: 1;}
+}

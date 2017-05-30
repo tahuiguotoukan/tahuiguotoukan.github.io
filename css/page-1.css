@@ -1,0 +1,118 @@
+.bg-1{
+	width: 25.3%;
+    height: 3.7%;
+    position: absolute;
+    left: -26%;
+    top: 10.5%;
+	transform: skewX(-45deg);
+	/*animation: ani_1 1s linear;*/
+	animation-fill-mode: forwards;
+}
+.ani_1{
+	animation-name: ani_1;
+}
+@keyframes ani_1{
+	0% {left: -26%; transform: skewX(-45deg);}
+	99% {left: 16.3%; transform: skewX(-45deg);}
+	100% {left: 16.3%; transform: skewX(0deg);}
+}
+.bg-2{
+	width: 35%; 
+	height: 24.4%; 
+	position: absolute; 
+	right: -30%; 
+	top: -30%;
+	transform: rotate(180deg);
+	/*animation: ani_2 1s linear;*/
+	animation-fill-mode: forwards;
+}
+.ani_2{
+	animation-name: ani_2;
+}
+@keyframes ani_2{
+	from{right: -30%; top: -30%; transform: rotate(180deg);}
+	to{right: 17%; top: 10.5%; transform: rotate(0deg);}
+}
+.bg-3{
+	width: 0;
+	height: 0;
+	position: absolute;
+	right: 16.5%;
+	top: 38.2%;
+	opacity: 0;
+	/*animation: ani_3 1s linear;*/
+	animation-fill-mode: forwards;
+}
+.ani_3{
+	animation-name: ani_3;
+}
+@keyframes ani_3{
+	from{opacity: 0;width: 0;height: 0;}
+	to{opacity: 1;width: 12.5%;height: 42.2%;}
+}
+.bg-4{
+	width: 66.7%;
+	height: 11.1%;
+	position: absolute;
+	right: -66.7%;
+	top: 84.7%;
+	/*animation: ani_4 1s linear;*/
+	animation-fill-mode: forwards;
+}
+.ani_4{
+	animation-name: ani_4;
+}
+@keyframes ani_4{
+	from{right: -66.7%}
+	to{right: 50%; margin-right: -33.3%;}
+}
+.bg-5{
+	width: 50.7%;
+	height: 23.6%;
+	position: absolute;
+	bottom: -23.6%;
+	left: -59.7%;
+	transform: rotate(-180deg);
+	/*animation: ani_5 1s linear;*/
+	animation-fill-mode: forwards;
+}
+.ani_5{
+	animation-name: ani_5;
+}
+@keyframes ani_5{
+	from{left: -59.7%; bottom: -23.6%; transform: rotate(-180deg);}
+	to{left: 17.1%; bottom: 19.7%; transform: rotate(0deg);}
+}
+.bg-6{
+	width: 0;
+    height: 0;
+    position: absolute;
+    top: 25.9%;
+    left: 29.3%;
+    transform: rotate(0);
+	/*animation: ani_6 1s linear;*/
+	animation-fill-mode: forwards;
+}
+.ani_6{
+	animation-name: ani_6;
+}
+@keyframes ani_6{
+	from{width: 0; height: 0; top: 25.9%; left: 29.3%; transform: rotate(0);}
+	to{width: 25.6%; height: 18%; top: 16.9%; left: 16.5%; transform: rotate(360deg);}
+}
+.bg-7{
+	width: 50.1%;
+    height: 0;
+    position: absolute;
+    top: 38.4%;
+    left: 17.3%;
+	/*animation: ani_7 1s linear 1s;*/
+	animation-fill-mode: forwards;
+}
+.ani_7{
+	animation-name: ani_7;
+}
+@keyframes ani_7{
+	from{height: 0;}
+	to{height: 18%;}
+}
