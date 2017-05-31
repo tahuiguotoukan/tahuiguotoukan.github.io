@@ -412,7 +412,7 @@ function shareFriend() {
             shareWeibo();
         });
     }, false);
-    $(function(){
+    $(document).ready(function(){
     	$('.index').animate({'opacity':'0'},function(){
     		$('.index').remove();
     		var swiper_1 = new Swiper('.swiper-first', {
