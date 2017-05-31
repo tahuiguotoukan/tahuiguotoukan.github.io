@@ -107,16 +107,52 @@
 		    transform: translate(0,-8px);
 		}
 	}
+	.index{
+		width: 100%;
+		height: 100%;
+		background: url(image/index.jpg) center center no-repeat;
+		background-size: 100% 100%;
+		position: absolute;
+		z-index: 5;
+	}
+	.loading{
+		width: 10%;
+		height: 10%;
+		background-color: white;
+		border-radius: 50%;
+		position: absolute;
+		width: 5%;
+	    height: 3%;
+	    background-color: white;
+	    border-radius: 50%;
+	    position: absolute;
+	    bottom: 37%;
+	    left: 28%;
+	    animation-name: ani-loading;
+	    animation-duration: 2s;
+	    animation-timing-function: linear;
+	    animation-iteration-count: infinite;
+	}
+	@keyframes ani-loading{
+		0%{left: 28%;}
+		50%{left: 67%;}
+		100%{left: 28%;}
+	}
     </style>
 </head>
 <body>
-	<div style="display: none;"><img width="300px" height="300px" src="image/微信图片_20170525163022.jpg"/></div>
+	<div style="position: absolute;top: -1000px;"><img width="300px" height="300px" src="image/20170525163022.jpg"/></div>
 	<div id="music">
-	    <audio id="music-src" presrc="beautiful_in_white" autoplay="" loop=""><source src="Simon & Garfunkel-The Sound Of Silence - 1981重制版.mp3" type="audio/mpeg"></audio>
+	    <audio id="music-src" presrc="beautiful_in_white" autoplay="" loop=""><source src="the-sound.mp3" type="audio/mpeg"></audio>
 	    <div id="music-control" class="music-icon on"><i class="iconfont"></i></div>
 	</div>
     <!-- Swiper -->
     <audio src=""></audio>
+    <div class="index">
+    	<div class="loading">
+    		
+    	</div>
+    </div>
     <div class="swiper-container swiper-first">
     	
         <div class="swiper-wrapper">
@@ -223,40 +259,40 @@
             <!-- page-5 -->
             <section class="swiper-slide">
             	<link rel="stylesheet" type="text/css" href="css/page-5.css"/>
-            	<div class="page-5-box page-5-box-1" swiper-animate-effect="zhuan-h" swiper-animate-duration="8s" swiper-animate-delay="2s">
-            		<div class="page-5-img-1"></div>
-            		<div style="background: url(image/lunbo5.jpg) center center no-repeat;background-size: 100% 100%;" class="page-5-img-2"></div>
+            	<div class="page-5-box page-5-box-1">
+            		<div class="page-5-img-1 ani" swiper-animate-effect="zhuan-h-1" swiper-animate-duration="8s" swiper-animate-delay="2s"></div>
+            		<div style="background: url(image/lunbo5.jpg) center center no-repeat;background-size: 100% 100%;" class="page-5-img-2 ani" swiper-animate-effect="zhuan-h-2" swiper-animate-duration="8s" swiper-animate-delay="2s"></div>
             	</div>
-            	<div class="page-5-box page-5-box-2" swiper-animate-effect="zhuan-v" swiper-animate-duration="8s" swiper-animate-delay="2s">
-            		<div style="background: url(image/houzi1.jpg) center center no-repeat;background-size: 100% 100%;" class="page-5-img-1"></div>
-            		<div  class="page-5-img-2"></div>
+            	<div class="page-5-box page-5-box-2">
+            		<div style="background: url(image/houzi1.jpg) center center no-repeat;background-size: 100% 100%;" class="page-5-img-1 ani"  swiper-animate-effect="zhuan-v-1" swiper-animate-duration="8s" swiper-animate-delay="2s"></div>
+            		<div  class="page-5-img-2 ani"   swiper-animate-effect="zhuan-v-2" swiper-animate-duration="8s" swiper-animate-delay="2s"></div>
             	</div>
-            	<div class="page-5-box page-5-box-2" swiper-animate-effect="zhuan-v" swiper-animate-duration="8s" swiper-animate-delay="2s">
-            		<div style="background: url(image/houzi2.jpg) center center no-repeat;background-size: 100% 100%;" class="page-5-img-1"></div>
-            		<div style="background: url(image/graduation.png) center center no-repeat;background-size: 90%;" class="page-5-img-2"></div>
+            	<div class="page-5-box page-5-box-2">
+            		<div style="background: url(image/houzi2.jpg) center center no-repeat;background-size: 100% 100%;" class="page-5-img-1 ani"   swiper-animate-effect="zhuan-v-1" swiper-animate-duration="8s" swiper-animate-delay="2s"></div>
+            		<div style="background: url(image/graduation.png) center center no-repeat;background-size: 90%;" class="page-5-img-2 ani"  swiper-animate-effect="zhuan-v-2" swiper-animate-duration="8s" swiper-animate-delay="2s"></div>
             	</div>
-            	<div class="page-5-box page-5-box-1" swiper-animate-effect="zhuan-h" swiper-animate-duration="8s" swiper-animate-delay="2s">
-            		<div style="background: url(image/graduation.png) center center no-repeat;background-size: 90%;" class="page-5-img-1"></div>
-            		<div style="background: url(image/lunbo6.jpg) center center no-repeat;background-size: 100% 100%;" class="page-5-img-2"></div>
+            	<div class="page-5-box page-5-box-1">
+            		<div style="background: url(image/graduation.png) center center no-repeat;background-size: 90%;" class="page-5-img-1 ani" swiper-animate-effect="zhuan-h-1" swiper-animate-duration="8s" swiper-animate-delay="2s"></div>
+            		<div style="background: url(image/lunbo6.jpg) center center no-repeat;background-size: 100% 100%;" class="page-5-img-2 ani" swiper-animate-effect="zhuan-h-2" swiper-animate-duration="8s" swiper-animate-delay="2s"></div>
             	</div>
-            	<div class="page-5-editor" swiper-animate-effect="ani-page-5-editor" swiper-animate-duration="8s">
+            	<div class="page-5-editor ani" swiper-animate-effect="ani-page-5-editor" swiper-animate-duration="8s">
             		
             	</div>
-            	<div class="page-5-box page-5-box-1" swiper-animate-effect="zhuan-h" swiper-animate-duration="8s" swiper-animate-delay="2s">
-            		<div style="background: url(image/graduation.png) center center no-repeat;background-size: 90%;" class="page-5-img-1"></div>
-            		<div style="background: url(image/lunbo7.jpg) center center no-repeat;background-size: 100% 100%;" class="page-5-img-2"></div>
+            	<div class="page-5-box page-5-box-1">
+            		<div style="background: url(image/graduation.png) center center no-repeat;background-size: 90%;" class="page-5-img-1 ani" swiper-animate-effect="zhuan-h-1" swiper-animate-duration="8s" swiper-animate-delay="2s"></div>
+            		<div style="background: url(image/lunbo7.jpg) center center no-repeat;background-size: 100% 100%;" class="page-5-img-2 ani" swiper-animate-effect="zhuan-h-2" swiper-animate-duration="8s" swiper-animate-delay="2s"></div>
             	</div>
-            	<div class="page-5-box page-5-box-2" swiper-animate-effect="zhuan-v" swiper-animate-duration="8s" swiper-animate-delay="2s">
-            		<div style="background: url(image/houzi3.jpg) center center no-repeat;background-size: 100% 100%;" class="page-5-img-1"></div>
-            		<div style="background: url(image/graduation.png) center center no-repeat;background-size: 90%;" class="page-5-img-2"></div>
+            	<div class="page-5-box page-5-box-2">
+            		<div style="background: url(image/houzi3.jpg) center center no-repeat;background-size: 100% 100%;" class="page-5-img-1 ani"  swiper-animate-effect="zhuan-v-1" swiper-animate-duration="8s" swiper-animate-delay="2s"></div>
+            		<div style="background: url(image/graduation.png) center center no-repeat;background-size: 90%;" class="page-5-img-2 ani"  swiper-animate-effect="zhuan-v-2" swiper-animate-duration="8s" swiper-animate-delay="2s"></div>
             	</div>
-            	<div class="page-5-box page-5-box-2" swiper-animate-effect="zhuan-v" swiper-animate-duration="8s" swiper-animate-delay="2s">
-            		<div style="background: url(image/houzi4.jpg) center center no-repeat;background-size: 100% 100%;" class="page-5-img-1"></div>
-            		<div class="page-5-img-2"></div>
+            	<div class="page-5-box page-5-box-2">
+            		<div style="background: url(image/houzi4.jpg) center center no-repeat;background-size: 100% 100%;" class="page-5-img-1 ani"  swiper-animate-effect="zhuan-v-1" swiper-animate-duration="8s" swiper-animate-delay="2s"></div>
+            		<div class="page-5-img-2 ani"  swiper-animate-effect="zhuan-v-2" swiper-animate-duration="8s" swiper-animate-delay="2s"></div>
             	</div>
-            	<div class="page-5-box page-5-box-1" swiper-animate-effect="zhuan-h" swiper-animate-duration="8s" swiper-animate-delay="2s">
-            		<div class="page-5-img-1"></div>
-            		<div style="background: url(image/lunbo8.jpg) center center no-repeat;background-size: 100% 100%;" class="page-5-img-2"></div>
+            	<div class="page-5-box page-5-box-1">
+            		<div class="page-5-img-1 ani" swiper-animate-effect="zhuan-h-1" swiper-animate-duration="8s" swiper-animate-delay="2s"></div>
+            		<div style="background: url(image/lunbo8.jpg) center center no-repeat;background-size: 100% 100%;" class="page-5-img-2 ani" swiper-animate-effect="zhuan-h-2" swiper-animate-duration="8s" swiper-animate-delay="2s"></div>
             	</div>
             </section>
             <!-- page-6 -->
@@ -281,6 +317,9 @@
             <section class="swiper-slide">
             	<link rel="stylesheet" type="text/css" href="css/page-7.css"/>
             	<div class="page-7-backg ani" swiper-animate-effect="bg" swiper-animate-duration="2s">
+            		<div class="page-7-wenan ani" swiper-animate-effect="ani-page-7-wenan" swiper-animate-duration="4s">
+            			
+            		</div>
             		<div class="maozi1 ani" swiper-animate-effect="xueshimao1" swiper-animate-duration="4s">
             			
             		</div>
@@ -301,7 +340,10 @@
             		</div>
             	</div>
             </section>
-            
+            <!-- page-8 -->
+            <section class="swiper-slide" style="background: url(image/index.jpg) center center no-repeat;background-size: 100% 100%;">
+            	
+            </section>
         </div>
         <img class="arrow" src="image/arrow.png">
         <!-- Add Pagination -->
@@ -314,7 +356,10 @@
 
     <!-- Initialize Swiper -->
     <script>
-    onload = function(){
+    $(function(){
+    	$('.index').animate({'opacity':'0'},function(){
+    		$('.index').remove();
+    	})
     	var swiper_1 = new Swiper('.swiper-first', {
         paginationClickable: true,
         preloadImages:false,
@@ -330,7 +375,7 @@
 			}else if(ind == 1){
 				$('.page-3-bg').addClass('ani')
 			}else if(ind == 4){
-				$('.page-5-box,.page-5-editor').addClass('ani')
+//				$('.page-5-box,.page-5-editor').addClass('ani')
 			}
 			swiperAnimate(swiper);
 		},
@@ -338,7 +383,7 @@
 			
 		}
     });
-    }
+    })
     
     
     var swiper_2 = new Swiper('.swiper-second', {
@@ -405,8 +450,9 @@
         },
     });
     $(function(){
+    	
     	var Media = document.getElementById("music-src");
-    	Media.src = "Simon & Garfunkel-The Sound Of Silence - 1981重制版.mp3"; 
+    	Media.src = "the-sound.mp3"; 
 		Media.play();
     	$('.page-2-box-1').css({'height':Math.floor($('.page-2-box-1').parent().height()*0.12)+'px'})
 	    $('.page-2-box-2').css({'height':Math.floor($('.page-2-box-2').parent().height()*0.19)+'px'})

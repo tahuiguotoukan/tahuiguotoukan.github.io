@@ -21,7 +21,7 @@
 	width: 8%;
     height: 5%;
     display: inline-block;
-    background: url(../image/xueshimao1.jpg) center center no-repeat;
+    background: url(../image/xueshimao1.png) center center no-repeat;
     background-size: 100%;
     position: absolute;
     bottom: 37%;
@@ -31,7 +31,7 @@
 	width: 8%;
     height: 5%;
     display: inline-block;
-    background: url(../image/xueshimao2.jpg) center center no-repeat;
+    background: url(../image/xueshimao2.png) center center no-repeat;
     background-size: 100%;
     position: absolute;
     bottom: 35%;
@@ -41,7 +41,7 @@
 	width: 8%;
     height: 5%;
     display: inline-block;
-    background: url(../image/xueshimao3.jpg) center center no-repeat;
+    background: url(../image/xueshimao3.png) center center no-repeat;
     background-size: 100%;
     position: absolute;
     bottom: 35%;
@@ -51,7 +51,7 @@
 	width: 8%;
     height: 5%;
     display: inline-block;
-    background: url(../image/xueshimao3.jpg) center center no-repeat;
+    background: url(../image/xueshimao3.png) center center no-repeat;
     background-size: 100%;
     position: absolute;
     bottom: 33%;
@@ -103,7 +103,7 @@
 	width: 8%;
     height: 5%;
     display: inline-block;
-    background: url(../image/biyezhengshu1.jpg) center center no-repeat;
+    background: url(../image/biyezhengshu1.png) center center no-repeat;
     background-size: 100%;
     position: absolute;
     bottom: 35%;
@@ -113,7 +113,7 @@
 	width: 8%;
     height: 5%;
     display: inline-block;
-    background: url(../image/biyezhengshu2.jpg) center center no-repeat;
+    background: url(../image/biyezhengshu2.png) center center no-repeat;
     background-size: 100%;
     position: absolute;
     bottom: 35%;
@@ -138,4 +138,19 @@
 	100%{bottom: 42%;width: 6.2%;}
 	0%{transform: rotate(0deg);}
 	100%{transform: rotate(540deg);}
+}
+.page-7-wenan{
+	width: 100%;
+	height: 30%;
+	position: absolute;
+	background: url(../image/page-7-wen.png) 50% center no-repeat;
+	background-size: 68% 46%;
+    top: 17%;
+}
+.ani-page-7-wenan{
+	animation-name: ani-page-7-wenan;
+}
+@keyframes ani-page-7-wenan{
+	from{top: 10%; opacity: 0;}
+	to{top: 17%; opacity: 1;}
 }
