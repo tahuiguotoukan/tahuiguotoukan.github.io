@@ -415,30 +415,31 @@ function shareFriend() {
     $(function(){
     	$('.index').animate({'opacity':'0'},function(){
     		$('.index').remove();
-    	})
-    	var swiper_1 = new Swiper('.swiper-first', {
-        paginationClickable: true,
-        preloadImages:false,
-        direction: 'vertical',
-        onInit: function(swiper){
-	    	swiperAnimate(swiper);
-		},
-	    onSlideChangeEnd: function(swiper){
-			
-			var ind = swiper.activeIndex;
-			if(ind == 2){
-				$('.page-2-bg-2,.page-2-bg-3,.page-2-bg-4,.page-2-bg-5').addClass('ani')
-			}else if(ind == 1){
-				$('.page-3-bg').addClass('ani')
-			}else if(ind == 4){
-//				$('.page-5-box,.page-5-editor').addClass('ani')
+    		var swiper_1 = new Swiper('.swiper-first', {
+	        paginationClickable: true,
+	        preloadImages:false,
+	        direction: 'vertical',
+	        onInit: function(swiper){
+		    	swiperAnimate(swiper);
+			},
+		    onSlideChangeEnd: function(swiper){
+				
+				var ind = swiper.activeIndex;
+				if(ind == 2){
+					$('.page-2-bg-2,.page-2-bg-3,.page-2-bg-4,.page-2-bg-5').addClass('ani')
+				}else if(ind == 1){
+					$('.page-3-bg').addClass('ani')
+				}else if(ind == 4){
+	//				$('.page-5-box,.page-5-editor').addClass('ani')
+				}
+				swiperAnimate(swiper);
+			},
+			onSlideNextStart: function(swiper){
+				
 			}
-			swiperAnimate(swiper);
-		},
-		onSlideNextStart: function(swiper){
-			
-		}
-    });
+	    	})
+	    	
+	    });
     })
     
     
