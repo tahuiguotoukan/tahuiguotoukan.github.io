@@ -36,8 +36,8 @@
 	to{right: 17%; top: 10.5%; transform: rotate(0deg);}
 }
 .bg-3{
-	width: 0;
-	height: 0;
+	width: 12.5%;
+	height: 42.2%;
 	position: absolute;
 	right: 16.5%;
 	top: 38.2%;
@@ -50,8 +50,8 @@
 	animation-timing-function: linear;
 }
 @keyframes ani_3{
-	from{opacity: 0;width: 0;height: 0;}
-	to{opacity: 1;width: 12.5%;height: 42.2%;}
+	from{opacity: 0;/*width: 0;height: 0;*/transform: scale(0,0);}
+	to{opacity: 1;/*width: 12.5%;height: 42.2%;*/transform: scale(1, 1);}
 }
 .bg-4{
 	width: 66.7%;
@@ -108,10 +108,11 @@
 }
 .bg-7{
 	width: 50.1%;
-    height: 0;
+    height: 18%;
     position: absolute;
     top: 38.4%;
     left: 17.3%;
+    opacity: 0;
 	/*animation: ani_7 1s linear 1s;*/
 	animation-fill-mode: forwards;
 }
@@ -120,6 +121,6 @@
 	animation-timing-function: linear;
 }
 @keyframes ani_7{
-	from{height: 0;}
-	to{height: 18%;}
+	from{/*height: 0;*/ transform: scaleY(0);opacity: 1;}
+	to{/*height: 18%;*/transform: scaleY(1);opacity: 1;}
 }
