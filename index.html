@@ -413,7 +413,8 @@ function shareFriend() {
         });
     }, false);
     $(document).ready(function(){
-    	$('.index').animate({'opacity':'0'},function(){
+    	setTimeout(function(){
+    		$('.index').animate({'opacity':'0'},1000,function(){
     		$('.index').remove();
     		var swiper_1 = new Swiper('.swiper-first', {
 	        paginationClickable: true,
@@ -441,6 +442,8 @@ function shareFriend() {
 	    	})
 	    	
 	    });
+    	},3000)
+    	
     })
     
     
