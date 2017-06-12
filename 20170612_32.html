@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#inp {
+				width: 340px;
+				height: 50px;
+				font-size: 24px;
+				vertical-align: middle;
+			}
+			#calculate {
+				height: 55px;
+				vertical-align: middle;
+				width: 70px;
+				font-size: 24px;
+				font-weight: bold;
+				font-family: "微软雅黑";
+			}
+			#result {
+				font-size: 24px;
+				padding: 10px 30px;
+			}
+		</style>
+	</head>
+	<body>
+		<input id="inp" type="text" value=""/>
+		<button id="calculate">计算</button>
+		<br /><br />
+		<div id="result"></div>
+		<script type="text/javascript">
+			var inp = document.getElementById('inp');
+			var cal = document.getElementById('calculate');
+			var res = document.getElementById('result');
+			window.onload = function(){
+				cal.addEventListener('touchstart',calClick);
+				cal.addEventListener('click',calClick);
+			}
+			
+			var calClick = function(){
+				var str = inp.value;
+				var arr = str.split('.');
+				if(arr.length != 8){
+					alert('开奖号长度错误！');
+				}else{
+					var result = calculate(arr);
+					res.innerHTML = result + ' -'+result.length;
+					res.contentEditable = true;
+				}
+			}
+			function calculate(arr){
+				var pingma = [];
+				for (var i = 0; i < 6; i++) {
+					if(parseInt(arr[i])%12 != 0){
+						pingma.push(parseInt(arr[i])%12)
+					}else{
+						pingma.push(12)
+					}
+					
+				}
+				
+				var newData = delsame(pingma);
+				console.log(newData)
+				while(newData.length < 11){
+					var ind = 0;
+					var rad = parseInt(Math.random()*12)+1;
+					for(var j = 0; j < newData.length; j++){
+						if(rad != newData[j]){
+							ind++;
+						}
+					}
+					if(ind == newData.length){
+						newData.push(rad);
+					}
+				}
+				var arr_1 = [];
+				for(var h = 0; h < newData.length; h++){
+					if(newData[h] == 1){
+						
+						arr_1.push(newData[h]+12)
+						arr_1.push(newData[h]+24)
+						arr_1.push(newData[h]+36)
+						arr_1.push(newData[h]+48)
+					}else{
+						arr_1.push(newData[h]+12)
+						arr_1.push(newData[h]+24)
+						arr_1.push(newData[h]+36)
+						
+					}
+				}
+				newData = newData.concat(arr_1);
+				console.log(newData.sort(function(a,b){
+					return a-b
+				}))
+				var del = delArr(arr);
+				for(var m = 0; m < del.length; m++){
+					for(var n = 0; n < newData.length; n++){
+						if(del[m] == newData[n]){
+							newData.splice(n,1);
+							break;
+						}
+					}
+				}
+				console.log(newData)
+				newData = newData.sort(function(a,b){
+					return a-b;
+				});
+				
+				return newData;
+			}
+			function delsame(arr){
+				for(var a = 0; a < arr.length; a++){
+					for(var b = a+1; b < arr.length; b++){
+						if(arr[a] == arr[b]){
+							arr.splice(a,1);
+							return delsame(arr)
+						}
+					}
+				}
+				return arr;
+			}
+			function delArr(arr){
+				if(arr[7]%12 == 0){
+					var del_num = 12;
+				}else{
+					var del_num = arr[7]%12;
+				}
+				if(del_num == 1){
+					var del = [del_num,del_num+12,del_num+24,del_num+36,del_num+48,1,2,48,49,17,6,12];
+				}else{
+					var del = [del_num,del_num+12,del_num+24,del_num+36,1,2,48,49,17,6,12];
+				}
+				if(arr[6]%12 == 0){
+					var te = 12;
+				}else{
+					var te = arr[6]%12;
+				}
+				del.push(te);
+				if(te == 1){
+					del.push(te+12)
+					del.push(te+24)
+					del.push(te+36)
+					del.push(te+48)
+				}else{
+					del.push(te+12)
+					del.push(te+24)
+					del.push(te+36)
+				}
+				console.log(del)
+				return del;
+			}
+		</script>
+	</body>
+</html>
