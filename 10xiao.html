@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#inp {
+				width: 340px;
+				height: 50px;
+				font-size: 24px;
+				vertical-align: middle;
+			}
+			#calculate {
+				height: 55px;
+				vertical-align: middle;
+				width: 70px;
+				font-size: 24px;
+				font-weight: bold;
+				font-family: "微软雅黑";
+			}
+			#result {
+				font-size: 24px;
+				padding: 10px 30px;
+			}
+		</style>
+	</head>
+	<body>
+		26.32.10.25.41.35.34.40<br /><br />
+		<input id="inp" type="text" value=""/>
+		<button id="calculate">计算</button>
+		<br /><br />
+		<div id="result"></div>
+		<script type="text/javascript">
+			var inp = document.getElementById('inp');
+			var cal = document.getElementById('calculate');
+			var res = document.getElementById('result');
+			window.onload = function(){
+				cal.addEventListener('touchstart',calClick);
+				cal.addEventListener('click',calClick);
+			}
+			
+			var calClick = function(){
+				var str = inp.value;
+				var arr = str.split('.');
+				if(arr.length != 8){
+					alert('开奖号长度错误！');
+				}else{
+					var result = calculate(arr);
+					res.innerHTML = result;
+					res.contentEditable = true;
+				}
+			}
+			function calculate(arr){
+				var a1 = 0,a2 = 0,a3 = 0,a4 = 0,a5 = 0,a6 = 0,a7 = 0,a8 = 0,a9 = 0,a10 = 1;
+				var a1_str = arr[0] + '';
+				var a1_arr = a1_str.split('');
+				
+				for(var a1i = 0; a1i < a1_arr.length; a1i++){
+					a1 += parseInt(a1_arr[a1i]);
+					
+				}
+				
+				var a2Count = 0;
+				for(var a2i = 1; a2i < arr.length; a2i++){
+					a2Count += parseInt(arr[a2i]);
+				}
+				var a2_str = a2Count + '';
+				var a2_arr = a2_str.split('');
+				for(var a2j = 0; a2j < a2_arr.length; a2j++){
+					a2 += parseInt(a2_arr[a2j]);
+				}
+				
+				var a3_str = arr[6] + '';
+				var a3_arr = a3_str.split('');
+				
+				for(var a3i = 0; a3i < a3_arr.length; a3i++){
+					a3 += parseInt(a3_arr[a3i]);
+					
+				}
+				
+				var a4_str = arr[4] + '';
+				var a4_arr = a4_str.split('');
+				a4 = parseInt(a4_arr[0]);
+				
+				a5 = Math.ceil(arr[2]/7);
+				
+				a6 = parseInt(a1_str.substring(a1_str.length-1,a1_str.length));
+				
+				var a7_str = arr[2] + '';
+				var a7_arr = a7_str.split('');
+				a7 = parseInt(a7_str.substring(a7_str.length-1,a7_str.length));
+				
+				a8 = arr[2];
+				
+				a9 = arr[1];
+				
+				var total = parseInt(a1) + parseInt(a2) + parseInt(a3) + parseInt(a4) + parseInt(a5) + parseInt(a6) + parseInt(a7) + parseInt(a8) + parseInt(a9) + parseInt(a10);
+				var ind = Math.abs(Math.floor(total/12) * 12 - total);
+				var endArr = [];
+				endArr.push((ind-5) > 0 ? ind-5 : ((12 + ind - 5) == 0 ? 12 : (12 + ind - 5)));
+				endArr.push((ind-4) > 0 ? ind-4 : ((12 + ind - 4) == 0 ? 12 : (12 + ind - 4)));
+				endArr.push((ind-3) > 0 ? ind-3 : ((12 + ind - 3) == 0 ? 12 : (12 + ind - 3)));
+				endArr.push((ind-2) > 0 ? ind-2 : ((12 + ind - 2) == 0 ? 12 : (12 + ind - 2)));
+				endArr.push((ind-1) > 0 ? ind-1 : ((12 + ind - 1) == 0 ? 12 : (12 + ind - 1)));
+//				endArr.push((ind) == 0 ? 12 : ind);
+				endArr.push((ind+1) < 12 ? ind + 1 : ((ind + 1 - 12) == 0 ? 12 : (ind + 1 - 12)));
+				endArr.push((ind+2) < 12 ? ind + 2 : ((ind + 2 - 12) == 0 ? 12 : (ind + 2 - 12)));
+				endArr.push((ind+3) < 12 ? ind + 3 : ((ind + 3 - 12) == 0 ? 12 : (ind + 3 - 12)));
+				endArr.push((ind+4) < 12 ? ind + 4 : ((ind + 4 - 12) == 0 ? 12 : (ind + 4 - 12)));
+				endArr.push((ind+5) < 12 ? ind + 5 : ((ind + 5 - 12) == 0 ? 12 : (ind + 5 - 12)));
+				console.log(endArr)
+				var xiao = {
+					'1':'鸡: 1,13,25,37,49',
+					'2':'猴: 2,14,26,38',
+					'3':'羊: 3,15,27,39',
+					'4':'马: 4,16,28,40',
+					'5':'蛇: 5,17,29,41',
+					'6':'龙: 6,18,30,42',
+					'7':'兔: 7,19,31,43',
+					'8':'虎: 8,20,32,44',
+					'9':'牛: 9,21,33,45',
+					'10':'鼠: 10,22,34,46',
+					'11':'猪: 11,23,35,47',
+					'12':'狗: 12,24,36,48',
+				}
+				var xiaoArr = [];
+				for(var i = 0; i < endArr.length; i++){
+					xiaoArr.push(xiao[endArr[i]]);
+				}
+				var xiaoStr = '';
+				for(var j = 0; j < xiaoArr.length; j++){
+					xiaoStr += xiaoArr[j] + '<br /><br />';
+				}
+				
+				return xiaoStr;
+			}
+			
+			
+		</script>
+	</body>
+</html>
