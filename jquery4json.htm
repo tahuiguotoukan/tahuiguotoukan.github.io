@@ -1,0 +1,87 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf8" />
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+<body style="padding:10px">
+<br>如有其它疑问请访问<a href="http://www.opencai.net/"><b style="color:#f00">www.opencai.net</b></a>
+<br>
+<br>采集地址：http://f.apiplus.cn/bjpk10.json<br>
+<div id="okay" style="font-size:28px"></div>
+<script type="text/javascript">
+$(document).ready(function(){
+    $.ajax({
+        url: 'http://f.apiplus.cn/bjpk10-6.json',
+        dataType: 'jsonp',
+        type: 'POST',
+		timeout: 5000,  //设定超时5秒
+        cache: false,   //禁用缓存
+        jsonp: 'callback',
+        success: function(result){
+			$("#okay").append("<br>"+new Date().format("yyyy-MM-dd hh:mm:ss")+"共采集到"+result.rows+"行开奖数据：<br>");
+			console.log(result.data)
+			var p = result.data[0].expect;
+			$("#okay").append('<br>开奖期号：'+p.substr(0,8)+'-'+p.substr(-3,3));
+			$("#okay").append('<br>开奖号码：'+result.data[0].opencode);
+			$("#okay").append('<br>开奖时间：'+result.data[0].opentime);
+			$("#okay").append('<br>');
+			var opencodeObj = {};
+			for (var i=0; i < result.data.length; i++) {
+				for(var j = 0; j < 10; j++){
+					if(!opencodeObj[j]){
+						opencodeObj[j] = [];
+					}
+					opencodeObj[j].push(result.data[i].opencode.split(',')[j])
+				}
+				
+			}
+			console.log(opencodeObj)
+			var resStr = '';
+			var boo = false;
+			for(key in opencodeObj){
+				var arr = opencodeObj[key]
+				var cha = 0;
+				for(var i = 1; i < arr.length; i++){
+				    cha = cha + Math.abs(parseInt(arr[i])-parseInt(arr[i-1]))
+				}
+				pingjucha = cha/(arr.length-1)
+				var ind = Math.round(pingjucha)
+				var a = parseInt(arr[0])
+				var j1,j2;
+				j1 = Math.abs(ind-1);
+				j2 = ind+1;
+				console.log(ind)
+				var res = ((a+j1)%10 === 0 ? 10 : (a+j1)%10)+','+((a+ind)%10 === 0 ? 10 : (a+ind)%10)+','+((a+j2)%10 === 0 ? 10 : (a+j2)%10)+','+((a-j1+10)%10 === 0 ? 10 : (a-j1+10)%10)+','+((a-ind+10)%10 === 0 ? 10 : (a-ind+10)%10)+','+((a-j2+10)%10 === 0 ? 10 : (a-j2+10)%10);
+				var resArr = res.split(',')
+				resArr = resArr.sort(function(a,b){
+					return a - b;
+				})
+				if(ind <= 3){
+					if(!boo){
+						resStr += '第'+(parseInt(key)+1)+'名 : '+'<span style="color:red;">'+resArr.join(', ')+'</span><br>';
+					}else{
+						resStr += '第'+(parseInt(key)+1)+'名 : '+resArr.join(', ')+'<br>';
+					}
+					boo = true;
+					
+				}else{
+					resStr += '第'+(parseInt(key)+1)+'名 : '+resArr.join(', ')+'<br>';
+				}
+				
+			}
+			$("#okay").append('<br>购买方案：<br>'+resStr);
+			
+		  //注：在JS采集到数据后，建议构造data:{exp:'期号',res:'结果',now:'时间'}通过ajax推送到本地的接收网址转存到数据库。
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {  
+            alert("加载彩票数据出错!");
+        }
+    });
+});
+
+Date.prototype.format = function(format){	var args = {	"M+" : this.getMonth() + 1,	"d+" : this.getDate(),	"h+" : this.getHours(),	"m+" : this.getMinutes(),	"s+" : this.getSeconds(),	"q+" : Math.floor((this.getMonth() + 3) / 3),  //quarter	
+"S" : this.getMilliseconds()	};	if(/(y+)/.test(format))	format = format.replace(RegExp.$1,(this.getFullYear() + "").substr(4 - RegExp.$1.length));	for(var i in args)	{	var n = args[i];	if(new RegExp("("+ i +")").test(format))	format = format.replace(RegExp.$1,RegExp.$1.length == 1 ? n : ("00" + n).substr(("" + n).length));	}	return format;};
+
+</script>
+</body>
+</html>
