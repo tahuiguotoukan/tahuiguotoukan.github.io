@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<style type="text/css">
+		ul, li{
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		.wrap{
+			width: 80%;
+			margin: 0 auto;
+		}
+		#select ul{
+
+			margin: 40px auto;
+			overflow: hidden;
+		}
+		#select ul li{
+			float: left;
+			font-size: 16px;
+			margin: 10px 20px;
+			padding: 10px 20px;
+			border: 1px solid;
+		}
+		.active{
+			background-color: red;
+		}
+		#result{
+			font-size: 36px;
+			border: 1px solid #000;
+
+			margin: 40px auto 20px;
+			box-sizing: border-box;
+			padding: 10px 20px;
+			line-height: 54px;
+			
+		}
+		#date-and-length{
+
+			overflow: hidden;
+			margin: 0 auto;
+		}
+		#date{
+			float: left;
+		}
+		#length{
+			float: right;
+		}
+		#search{
+			width: 100px;
+			height: 40px;
+		}
+	</style>
+	<body>
+		<div class="wrap">
+			<div id="result" contenteditable="true">
+			
+			</div>
+			
+			<div id="date-and-length">
+				<div id="date">
+				
+				</div>
+				<div id="length">
+					length:
+				</div>
+			</div>
+			
+			<div id="select">
+				
+			</div>
+			<button id="search">开始筛选</button>
+		</div>
+		
+		
+	</body>
+	<script type="text/javascript">
+		var data = [
+			{
+				'三姐妹1': [01,02,03], 
+				'三姐妹2': [04,05,06],
+				'三姐妹3': [07,08,09], 
+				'三姐妹4': [10,11,12], 
+				'三姐妹5': [13,14,15], 
+				'三姐妹6': [16,17,18], 
+				'三姐妹7': [19,20,21], 
+				'三姐妹8': [22,23,24], 
+				'三姐妹9': [25,26,27], 
+				'三姐妹10': [28,29,30], 
+				'三姐妹11': [31,32,33], 
+				'三姐妹12': [34,35,36], 
+				'三姐妹13': [37,38,39], 
+				'三姐妹14': [40,41,42], 
+				'三姐妹15': [43,44,45], 
+				'三姐妹16': [46,47,48,49]
+			},
+			{
+				'红双合双小': [02,08,24], 
+				'红单合双小': [13,19], 
+				'蓝双合双小': [04,20], 
+				'蓝单合双小': [15],
+				'绿双合双小': [06,22], 
+				'绿单合双小': [11,17], 
+				'红双合双大': [40,46], 
+				'红单合双大': [35], 
+				'蓝双合双大': [26,42,48], 
+				'蓝单合双大': [31,37], 
+				'绿双合双大': [28,44], 
+				'绿单合双大': [33,39], 
+				'红双合单小': [12,18], 
+				'红单合单小': [01,07,23], 
+				'蓝双合单小': [10,14], 
+				'蓝单合单小': [03,09], 
+				'绿双合单小': [16], 
+				'绿单合单小': [05,21], 
+				'红双合单大': [30,34], 
+				'红单合单大': [29,45], 
+				'蓝双合单大': [36], 
+				'蓝单合单大': [25,41,47], 
+				'绿双合单大': [32,38], 
+				'绿单合单大': [27,43,49]
+			}
+		]
+		function OnclickLi(event) {
+			event.preventDefault();
+			var node = event.target;
+			console.log(node.className)
+			if(node.className === 'active'){
+				node.className = '';
+			}else{
+				node.className = 'active';
+			}
+		}
+		document.getElementById('date').innerText = new Date().toLocaleDateString();
+		let sel = document.getElementById('select');
+		for(var i = 0; i < data.length; i++){
+			var ul = document.createElement('ul');
+			ul.className = i;
+			var items = data[i];
+			for(var k in items){
+				var li = document.createElement('li');
+				li.onclick = OnclickLi;
+				li.innerText = k;
+				ul.appendChild(li);
+			}
+			sel.appendChild(ul);
+			console.log(ul);
+			
+		}
+		document.getElementById('search').onclick = function (event) {
+			let ul = document.querySelectorAll('ul');
+			console.log(ul)
+			let delarr = [];
+			for(var i = 0; i < ul.length; i++){
+				let d = data[i];
+				let items = ul[i].querySelectorAll('li');
+				
+				for(let j = 0; j < items.length; j++){
+					let item = items[j];
+					if(item.className === 'active'){
+						delarr = delarr.concat(d[item.innerText]);
+					}
+				}
+			}
+			console.log(delarr);
+			let initArr = [];
+			for(let i = 1; i <= 49; i++){
+				initArr.push(i)
+			}
+			console.log(initArr)
+			for(let i = (initArr.length - 1); i >= 0; i--){
+				if(delarr.indexOf(initArr[i]) > -1){
+					initArr.splice(i, 1);
+				}
+			}
+			console.log(initArr);
+			document.getElementById('result').innerText = initArr.toString().replace(/,/g, '，');
+			document.getElementById('length').innerText = 'length: ' + initArr.length;
+		}
+		document.getElementById('result').oninput = function (event) {
+			let arr = event.target.innerText.split('，');
+			document.getElementById('length').innerText = 'length: ' + arr.length;
+		}
+	</script>
+</html>
