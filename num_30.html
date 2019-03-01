@@ -69,7 +69,13 @@
 					length:
 				</div>
 			</div>
-			
+			<div>
+				<select id="selInput">
+					<option value="0"></option>
+					<option value="1">三姐妹-二十四模-七项</option>
+					<option value="2">三姐妹-体表-直线</option>
+				</select>
+			</div>
 			<div id="select">
 				
 			</div>
@@ -79,7 +85,8 @@
 		
 	</body>
 	<script type="text/javascript">
-		var data = [
+		
+		var baseData = [
 			{
 				'三姐妹1': [01,02,03], 
 				'三姐妹2': [04,05,06],
@@ -183,6 +190,41 @@
 //				'猪': [1,13,25,37,49]
 //			}
 		]
+		var data = []
+		document.getElementById('selInput').onchange = function (event) {
+
+			var val = parseInt(event.target.value);
+			data = [];
+			if(val === 1){
+				data.push(baseData[0]);
+				data.push(baseData[1]);
+				data.push(baseData[2]);
+			}else if(val === 2){
+				data.push(baseData[0]);
+				data.push(baseData[3]);
+				data.push(baseData[4]);
+			}
+
+			renderPage();
+		}
+		function renderPage(){
+			let sel = document.getElementById('select');
+			sel.innerHTML = '';
+			for(var i = 0; i < data.length; i++){
+				var ul = document.createElement('ul');
+				ul.className = i;
+				var items = data[i];
+				for(var k in items){
+					var li = document.createElement('li');
+					li.onclick = OnclickLi;
+					li.innerText = k;
+					ul.appendChild(li);
+				}
+				sel.appendChild(ul);
+				console.log(ul);
+				
+			}
+		}
 		function OnclickLi(event) {
 			event.preventDefault();
 			var node = event.target;
@@ -194,22 +236,12 @@
 			}
 		}
 		document.getElementById('date').innerText = new Date().toLocaleDateString();
-		let sel = document.getElementById('select');
-		for(var i = 0; i < data.length; i++){
-			var ul = document.createElement('ul');
-			ul.className = i;
-			var items = data[i];
-			for(var k in items){
-				var li = document.createElement('li');
-				li.onclick = OnclickLi;
-				li.innerText = k;
-				ul.appendChild(li);
-			}
-			sel.appendChild(ul);
-			console.log(ul);
-			
-		}
+		
 		document.getElementById('search').onclick = function (event) {
+			if(data.length <= 0){
+				alert('数据错误！');
+				return;
+			}
 			let ul = document.querySelectorAll('ul');
 			console.log(ul)
 			let delarr = [];
