@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#res>span{
+				float: left;
+				margin-right: 20px;
+				margin-top: 40px;
+			}
+			.red{
+				color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="text" name="" id="inp" value="" />
+		<input id="cal" type="button" value="计算" />
+		<div id="res"></div>
+	</body>
+	<script type="text/javascript">
+//	9.7.8.9.5.4.8.7.5.2.10.6.4.6.1.10.8.7.9.3.10.4.5.1.6.2.2.10.3.8.1.3.6.9.9.4.7.8.5.5.9.4.7.1
+		var cal = document.getElementById('cal');
+		cal.onclick = function () {
+//			var arrT = [
+//				[1,2,3,4,5,6],
+//				[2,3,4,5,6,7],
+//				[3,4,5,6,7,8],
+//				[4,5,6,7,8,9],
+//				[5,6,7,8,9,10]
+//			];
+			var val = document.getElementById('inp').value;
+			var valArr = val.split('.');
+			document.getElementById('res').innerHTML = '';
+			for(var z = 0; z < arrT.length; z++){
+				let arr = arrT[z];
+				var result = [];
+				var p = 0;
+				var span = document.createElement('span');
+				span.innerHTML = arr + '<br/><br/>'
+				for(var i = 0; i < valArr.length; i++){
+					var item = valArr[i];
+					if(arr.indexOf((item*1)) > -1){
+						p++;
+						result.push({res: 1, p: p/(i+1)});
+						
+					}else{
+						result.push({res: 0, p: p/(i+1)});
+						
+					}
+					
+				}
+				
+				for(var j = 0; j < result.length; j++){
+					if(result[j].p < 0.5){
+						span.innerHTML += '<span class="red">' + result[j].res + ' ' + result[j].p + '<span/><br/>'
+					}else{
+						span.innerHTML += '<span>' + result[j].res + ' ' + result[j].p + '<span/><br/>'
+					}
+					
+				}
+				
+				document.getElementById('res').appendChild(span);
+			}
+			
+		
+
+			
+		}
+		function f(n,m){
+	        if(n < m) return 0;
+	        if(n == m) return 1;
+	        if(m == 0) return 1;
+	        
+	        return f(n-1, m-1)+f(n - 1, m);
+	    }
+	    function main() {
+	        
+	        var k = f(10,6);
+	        document.write(k);
+			document.write('<br/>');
+	    }
+	main();
+	var ind = 0;
+		function combine_decrease(arr, start, result, count, NUM)
+	  {
+	  	
+	    var i;
+	    for (i = start; i >=count; i--)
+	   {
+	     result[count - 1] = i - 1;
+	     if (count > 1)
+	     {
+	     combine_decrease(arr, i - 1, result, count - 1, NUM);
+	     }
+	   else
+	    {
+	      var j;
+	       ind++;
+//	      document.write(ind + ' ');
+			var a = [];
+	       for (j = NUM - 1; j >=0; j--){
+	       	a.push(arr[result[j]]);
+//	       	document.write(arr[result[j]] + ',');
+	       }
+	     
+//	       document.write("<br/>");
+			arrT.push(a);
+	     }
+	   }
+	 }
+	  var arrS = [1, 2, 3, 4, 5, 6,7,8,9,10];
+	  var arrT = [];
+  var num = 6;
+   var result = new Array(num);
+ 		combine_decrease(arrS, arrS.length, result, num, num);
+	</script>
+</html>
