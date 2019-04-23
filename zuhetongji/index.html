@@ -12,24 +12,38 @@
 			.red{
 				color: red;
 			}
+			#inp{
+				width: 90%;
+				font-size: 18px;
+			}
 		</style>
 	</head>
 	<body>
-		<input type="text" name="" id="inp" value="" />
+		<textarea id="inp" value="" rows="4"></textarea>
+		<br />
 		<input id="cal" type="button" value="计算" />
+		<div id="total"></div>
 		<div id="res"></div>
 	</body>
 	<script type="text/javascript">
-//	9.7.8.9.5.4.8.7.5.2.10.6.4.6.1.10.8.7.9.3.10.4.5.1.6.2.2.10.3.8.1.3.6.9.9.4.7.8.5.5.9.4.7.1
+//  18: 9.8.7.7.3.8.1.2.9.2.4.2.8.10.7.9.5.6.1.3.10.9.7.3.8.6.1.7.1.2.6.5.4.3.2.8.8.10.5.8.5.7.9.10
+//  19: 2.6.9.7.8.3.2.3.4.3.6.6.5.1.9.6.7.3.3.3.2.6.1.8.4.6.6.4.1.1.7.5.10.8.4.1.4.6.10.5.4.9.4.10
+//  20: 9.1.6.2.3.6.2.1.9.1.7.3.6.3.8.10.7.10.10.4.2.2.7.9.4.5.10.10.3.10.2.6.2.3.8.8.3.4.3.9.8.6.5.9
+//	21: 1.7.4.9.5.5.8.7.4.9.9.6.3.1.8.3.10.2.2.6.1.5.4.10.3.9.7.8.10.1.6.4.6.10.2.5.7.8.4.5.9.8.7.9
+//  22: 8.3.3.3.4.3.4.6.4.8.2.3.7.8.7.2.1.10.9.1.3.1.2.9.6.2.10.10.7.9.4.10.6.1.5.5.2.1.6.2.1.7.3.9
 		var cal = document.getElementById('cal');
+		
 		cal.onclick = function () {
-//			var arrT = [
-//				[1,2,3,4,5,6],
-//				[2,3,4,5,6,7],
-//				[3,4,5,6,7,8],
-//				[4,5,6,7,8,9],
-//				[5,6,7,8,9,10]
-//			];
+			var total = 0;
+			var arrT = [
+				[1,2,3,4,5],
+				[2,3,4,5,6],
+				[3,4,5,6,7],
+				[4,5,6,7,8],
+				[5,6,7,8,9],
+				[6,7,8,9,10]
+				
+			];
 			var val = document.getElementById('inp').value;
 			var valArr = val.split('.');
 			document.getElementById('res').innerHTML = '';
@@ -53,7 +67,8 @@
 				}
 				
 				for(var j = 0; j < result.length; j++){
-					if(result[j].p < 0.5){
+					if(result[j].p < 0.47 && result[j].res === 0 && j > 0){
+						total++;
 						span.innerHTML += '<span class="red">' + result[j].res + ' ' + result[j].p + '<span/><br/>'
 					}else{
 						span.innerHTML += '<span>' + result[j].res + ' ' + result[j].p + '<span/><br/>'
@@ -64,8 +79,8 @@
 				document.getElementById('res').appendChild(span);
 			}
 			
-		
-
+			
+			document.getElementById('total').innerHTML = total;
 			
 		}
 		function f(n,m){
@@ -77,11 +92,11 @@
 	    }
 	    function main() {
 	        
-	        var k = f(10,6);
+	        var k = f(10,5);
 	        document.write(k);
 			document.write('<br/>');
 	    }
-	main();
+//	main();
 	var ind = 0;
 		function combine_decrease(arr, start, result, count, NUM)
 	  {
@@ -110,10 +125,10 @@
 	     }
 	   }
 	 }
-	  var arrS = [1, 2, 3, 4, 5, 6,7,8,9,10];
-	  var arrT = [];
-  var num = 6;
-   var result = new Array(num);
- 		combine_decrease(arrS, arrS.length, result, num, num);
+//	  var arrS = [1, 2, 3, 4, 5, 6,7,8,9,10];
+//	  var arrT = [];
+//var num = 6;
+// var result = new Array(num);
+// 		combine_decrease(arrS, arrS.length, result, num, num);
 	</script>
 </html>

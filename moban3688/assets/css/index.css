@@ -46,7 +46,30 @@
 	height: 2px;
 	background-color: #fead15;
 }
-
+.product{
+	padding: 0;
+	margin: 0;
+}
+.product-banner{
+	height: 180px;
+}
+.product-container{
+	padding: 90px 0 90px 0;
+}
+.profuct-right{
+	padding-left: 60px;
+	padding-top: 60px;
+	padding-right: 60px;
+}
+.profuct-left{
+	/*text-align: center;*/
+}
+.product-nav-item:hover{
+	color: #fead15;
+}
+.product-nav-item-active{
+	color: #fead15;
+}
 @media only screen and (max-width: 1360px) {
  
  .rightmenu{

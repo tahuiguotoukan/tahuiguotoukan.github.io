@@ -153,10 +153,10 @@
     font-weight: 700;
     letter-spacing: .3px;
     }
-    section.dot{
+    section.dot,div.dot{
     position: relative;
     }
-    section.dot:before{
+    section.dot:before,div.dot:before{
     content: "";
     position: absolute;
     width: 100%;
