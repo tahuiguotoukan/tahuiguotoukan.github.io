@@ -65,8 +65,19 @@
 					}
 					
 				}
+				let c = 0;
+				for(var i = 0; i < valArr.length; i++){
+					var item = valArr[i];
+					
+					if(arr.indexOf((item*1)) === -1){
+						c++;
+					}else{
+						c=0;
+					}
+					
+				}
 				if(b === 2){
-					result.push(arr);
+					result.push({data:arr, count: c});
 				}
 //				for(var j = 0; j < result.length; j++){
 //					//5:0.4  
@@ -81,18 +92,25 @@
 //				
 				
 			}
-			let rand1 = parseInt(Math.random()*(result.length-1+1)+0);
-			let rand2 = parseInt(Math.random()*(result.length-1+1)+0);
-			console.log(rand1+' '+rand2);
+//			let rand1 = parseInt(Math.random()*(result.length-1+1)+0);
+//			let rand2 = parseInt(Math.random()*(result.length-1+1)+0);
+//			console.log(rand1+' '+rand2);
+//			for(var j = 0; j < result.length; j++){
+//				
+//				if(j === rand1 || j === rand2){
+//					document.getElementById('res').innerHTML += '<span class="red">'+result[j].sort(function(a,b){return a-b;})+'</span><br/>';
+//				}else{
+//					document.getElementById('res').innerHTML += '<span>'+result[j].sort(function(a,b){return a-b;})+'</span><br/>';
+//				}
+//			}
+			result.sort(function (a,b) {
+				return b.count - a.count;
+			})
 			for(var j = 0; j < result.length; j++){
 				
-				if(j === rand1 || j === rand2){
-					document.getElementById('res').innerHTML += '<span class="red">'+result[j].sort(function(a,b){return a-b;})+'</span><br/>';
-				}else{
-					document.getElementById('res').innerHTML += '<span>'+result[j].sort(function(a,b){return a-b;})+'</span><br/>';
-				}
+				document.getElementById('res').innerHTML += '<span>'+result[j].data.sort(function(a,b){return a-b;})+ ' : ' + result[j].count+'</span><br/>';
+
 			}
-			
 			
 			
 			
