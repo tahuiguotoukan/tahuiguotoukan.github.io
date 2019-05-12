@@ -139,7 +139,7 @@
 					<div class="row p-4-vh ml-mr-30">
 						<div class="col-md-2 onStep profuct-left" data-animation="fadeInLeft" data-time="300">
 							<div class="py-1">
-								<h3 class="headingcontent product-nav-item">
+								<h3 class="headingcontent product-nav-item product-nav-item-active">
 									PROJECTS ONE
 							  	</h3>
 							</div>
@@ -157,8 +157,8 @@
 
 						<div class="col-md-10 profuct-right dot">
 							<div class="col-12">
-							<div class="onStep row" data-animation="fadeInUp" data-time="0">
-								<a class="col-sm-4 col-md-3 col-gl-2 product-item" href="product_detail.html">
+							<div class="onStep row" id="product-panel" data-animation="fadeInUp" data-time="0">
+								<!--<a class="col-sm-4 col-md-3 col-gl-2 product-item" href="product_detail.html">
 								    <div class="thumbnail gal-home">
 								      <img src="assets/images/bg-about-1.jpg" class="hovereffect">
 								      <div class="caption">
@@ -166,36 +166,12 @@
 								        <p>detail label</p>
 								      </div>
 								    </div>
-							  	</a>
-							  	<a class="col-sm-4 col-md-3 col-gl-2 product-item" href="product_detail.html">
-								    <div class="thumbnail gal-home">
-								      <img src="assets/images/bg-about-1.jpg" class="hovereffect">
-								      <div class="caption">
-								        <h3>Thumbnail label</h3>
-								        <p>detail label</p>
-								      </div>
-								    </div>
-							  	</a>
-							  	<a class="col-sm-4 col-md-3 col-gl-2 product-item" href="product_detail.html">
-								    <div class="thumbnail gal-home">
-								      <img src="assets/images/bg-about-1.jpg" class="hovereffect">
-								      <div class="caption">
-								        <h3>Thumbnail label</h3>
-								        <p>detail label</p>
-								      </div>
-								    </div>
-							  	</a>
-							  	<a class="col-sm-4 col-md-3 col-gl-2 product-item" href="product_detail.html">
-								    <div class="thumbnail gal-home">
-								      <img src="assets/images/bg-about-1.jpg" class="hovereffect">
-								      <div class="caption">
-								        <h3>Thumbnail label</h3>
-								        <p>detail label</p>
-								      </div>
-								    </div>
-							  	</a>
+							  	</a>-->
+							  	
+							  	
 							  	
 							</div>
+							
 						</div>
 						</div>
 
@@ -239,6 +215,36 @@
 		<!-- main js -->
 		<script src="assets/js/on3step.js"></script>
 		<script src="assets/js/plugin-set.js"></script>
+		<script src="data.js"></script>
 	</body>
-
+	<script type="text/javascript">
+		var list = data;
+		jQuery('.profuct-left>div').click(function() {
+			jQuery(this).children('.product-nav-item').addClass('product-nav-item-active');
+			jQuery(this).siblings().children('.product-nav-item').removeClass('product-nav-item-active');
+			renderProductList(jQuery(this).index());
+		})
+		function renderProductList(ind){
+			let template = '<a class="col-sm-4 col-md-3 col-gl-2 product-item" href="product_detail.html">'
+								    +'<div class="thumbnail gal-home">'
+								    +  '<img src="assets/images/bg-about-1.jpg" class="hovereffect">'
+								    +  '<div class="caption">'
+								    +    '<h3>Thumbnail label</h3>'
+								    +    '<p>detail label</p>'
+								    +  '</div>'
+								    +'</div>'
+							  	+'</a>'
+			let data = list.product[ind].list;
+			jQuery('#product-panel').html('');
+			data.forEach((v, i) => {
+				let child = jQuery(template);
+				child.find('img').attr('src', 'assets/images/img/' + v.img);
+				jQuery('#product-panel').append(child);
+			})
+		}
+		
+		renderProductList(0);
+		
+		
+	</script>
 </html>

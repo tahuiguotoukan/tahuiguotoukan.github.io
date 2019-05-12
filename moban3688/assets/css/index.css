@@ -64,11 +64,24 @@
 .profuct-left{
 	/*text-align: center;*/
 }
+.product-nav-item{
+	font-size: 18px;
+}
+.product-nav-item:after{
+	padding: 0;
+	margin: 0px;
+}
 .product-nav-item:hover{
 	color: #fead15;
 }
 .product-nav-item-active{
 	color: #fead15;
+}
+.product-nav-item-active:after{
+	width: 100%;
+}
+.product-detail-panel{
+	
 }
 @media only screen and (max-width: 1360px) {
  
