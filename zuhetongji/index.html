@@ -1,118 +1,71 @@
 <!DOCTYPE html>
-<!-- saved from url=(0063)https://tahuiguotoukan.github.io/mygithub/zuhetongji/index.html -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		
+<html>
+	<head>
+		<meta charset="UTF-8">
 		<title></title>
 		<style type="text/css">
 			#res>span{
+				float: left;
 				margin-right: 20px;
 				margin-top: 40px;
 			}
 			.red{
 				color: red;
 			}
-			#inp{
-				width: 90%;
-				font-size: 18px;
-			}
 		</style>
 	</head>
 	<body>
-		<textarea id="inp" value="" rows="4"></textarea>
-		<br>
-		<input id="cal" type="button" value="计算">
-		<div id="total"></div>
+		<input type="text" name="" id="inp" value="" />
+		<input id="cal" type="button" value="计算" />
 		<div id="res"></div>
-	
+	</body>
 	<script type="text/javascript">
-//  18: 9.8.7.7.3.8.1.2.9.2.4.2.8.10.7.9.5.6.1.3.10.9.7.3.8.6.1.7.1.2.6.5.4.3.2.8.8.10.5.8.5.7.9.10
-//  19: 2.6.9.7.8.3.2.3.4.3.6.6.5.1.9.6.7.3.3.3.2.6.1.8.4.6.6.4.1.1.7.5.10.8.4.1.4.6.10.5.4.9.4.10
-//  20: 9.1.6.2.3.6.2.1.9.1.7.3.6.3.8.10.7.10.10.4.2.2.7.9.4.5.10.10.3.10.2.6.2.3.8.8.3.4.3.9.8.6.5.9
-//	21: 1.7.4.9.5.5.8.7.4.9.9.6.3.1.8.3.10.2.2.6.1.5.4.10.3.9.7.8.10.1.6.4.6.10.2.5.7.8.4.5.9.8.7.9
-//  22: 8.3.3.3.4.3.4.6.4.8.2.3.7.8.7.2.1.10.9.1.3.1.2.9.6.2.10.10.7.9.4.10.6.1.5.5.2.1.6.2.1.7.3.9
+//	9.7.8.9.5.4.8.7.5.2.10.6.4.6.1.10.8.7.9.3.10.4.5.1.6.2.2.10.3.8.1.3.6.9.9.4.7.8.5.5.9.4.7.1
 		var cal = document.getElementById('cal');
-		var arrTO = [];
-		
 		cal.onclick = function () {
-			var total = 0;
-			//var arrT = [
-			//	[1,2,3,4,5],
-			//	[2,3,4,5,6],
-			//	[3,4,5,6,7],
-			//	[4,5,6,7,8],
-			//	[5,6,7,8,9],
-			//	[6,7,8,9,10]
-				
-			//];
-			let arrT = ArrFilter(arrTO);
-//			arrT = arrTO;
+//			var arrT = [
+//				[1,2,3,4,5,6],
+//				[2,3,4,5,6,7],
+//				[3,4,5,6,7,8],
+//				[4,5,6,7,8,9],
+//				[5,6,7,8,9,10]
+//			];
 			var val = document.getElementById('inp').value;
 			var valArr = val.split('.');
 			document.getElementById('res').innerHTML = '';
-			let result = [];
 			for(var z = 0; z < arrT.length; z++){
 				let arr = arrT[z];
-				let b = 0;
-//				var span = document.createElement('span');
-//				span.innerHTML = arr + '<br/><br/>'
-				for(var i = (valArr.length-1); i > (valArr.length-3); i--){
-					var item = valArr[i];
-					
-					if(arr.indexOf((item*1)) === -1){
-						b++;
-					}else{
-						b=0;
-					}
-					
-				}
-				let c = 0;
+				var result = [];
+				var p = 0;
+				var span = document.createElement('span');
+				span.innerHTML = arr + '<br/><br/>'
 				for(var i = 0; i < valArr.length; i++){
 					var item = valArr[i];
-					
-					if(arr.indexOf((item*1)) === -1){
-						c++;
+					if(arr.indexOf((item*1)) > -1){
+						p++;
+						result.push({res: 1, p: p/(i+1)});
+						
 					}else{
-						c=0;
+						result.push({res: 0, p: p/(i+1)});
+						
 					}
 					
 				}
-				if(b === 2){
-					result.push({data:arr, count: c});
+				
+				for(var j = 0; j < result.length; j++){
+					if(result[j].p < 0.6){
+						span.innerHTML += '<span class="red">' + result[j].res + ' ' + result[j].p + '<span/><br/>'
+					}else{
+						span.innerHTML += '<span>' + result[j].res + ' ' + result[j].p + '<span/><br/>'
+					}
+					
 				}
-//				for(var j = 0; j < result.length; j++){
-//					//5:0.4  
-////					if(result[j].p < 0.4 && result[j].res === 0 && j > 10){
-////						
-////						span.innerHTML += '<span class="red">'+(j+1) +' ' + result[j].res + ' ' + result[j].p + '<span/><br/>'
-////					}else{
-//						span.innerHTML += '<span>'+result[j].b +' ' + result[j].l + ' ' + result[j].p + '<span/><br/>'
-////					}
-//					
-//				}
-//				
 				
+				document.getElementById('res').appendChild(span);
 			}
-//			let rand1 = parseInt(Math.random()*(result.length-1+1)+0);
-//			let rand2 = parseInt(Math.random()*(result.length-1+1)+0);
-//			console.log(rand1+' '+rand2);
-//			for(var j = 0; j < result.length; j++){
-//				
-//				if(j === rand1 || j === rand2){
-//					document.getElementById('res').innerHTML += '<span class="red">'+result[j].sort(function(a,b){return a-b;})+'</span><br/>';
-//				}else{
-//					document.getElementById('res').innerHTML += '<span>'+result[j].sort(function(a,b){return a-b;})+'</span><br/>';
-//				}
-//			}
-			result.sort(function (a,b) {
-				return b.count - a.count;
-			})
-			for(var j = 0; j < result.length; j++){
-				
-				document.getElementById('res').innerHTML += '<span>'+result[j].data.sort(function(a,b){return a-b;})+ ' : ' + result[j].count+'</span><br/>';
+			
+		
 
-			}
-			
-			
 			
 		}
 		function f(n,m){
@@ -124,11 +77,11 @@
 	    }
 	    function main() {
 	        
-	        var k = f(10,5);
+	        var k = f(10,6);
 	        document.write(k);
 			document.write('<br/>');
 	    }
-//	main();
+	main();
 	var ind = 0;
 		function combine_decrease(arr, start, result, count, NUM)
 	  {
@@ -153,41 +106,14 @@
 	       }
 	     
 //	       document.write("<br/>");
-			arrTO.push(a);
+			arrT.push(a);
 	     }
 	   }
 	 }
 	  var arrS = [1, 2, 3, 4, 5, 6,7,8,9,10];
-	  
-var num = 5;
- var result = new Array(num);
+	  var arrT = [];
+  var num = 6;
+   var result = new Array(num);
  		combine_decrease(arrS, arrS.length, result, num, num);
- 		
- var limit = 2;
-	function ArrFilter(arr){
-		let res = [];
-		for(let i = 0; i < arr.length; i++){
-			let j = 0; let o = 0;
-			let d = 0, x = 0;
-			let item = arr[i];
-			item.forEach(function (v,k){
-				if(v%2 === 0){
-					o++;
-				}else{
-					j++;
-				}
-				if(v<=5){
-					x++;
-				}else{
-					d++;
-				}
-			})
-			if(j>=limit&&o>=limit && x>=limit&& d>=limit){
-				res.push(item);
-			}
-		}
-		return res;
-	}
 	</script>
-
-</body></html>
+</html>
