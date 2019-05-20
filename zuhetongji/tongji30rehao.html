@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#res>span{
+				float: left;
+				margin-right: 20px;
+				margin-top: 40px;
+			}
+			.red{
+				color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="text" name="" id="inp" value="" />
+		<input id="cal" type="button" value="计算" />
+		<div id="res"></div>
+	</body>
+	<script type="text/javascript">
+	//9.1.8.8.7.1.7.6.1.1.6.5.4.2.3.2.3.5.3.4.1.3.1.4.4.5.6.5.10.7.5.10.6.9.2.7.2
+//	9.7.8.9.5.4.8.7.5.2.10.6.4.6.1.10.8.7.9.3.10.4.5.1.6.2.2.10.3.8.1.3.6.9.9.4.7.8.5.5.9.4.7.1
+//2019 24.2.10.23.27.7.37.8.44.36.21.29.29.39.1.43.27.11.12.41.34.1.15.11.8.45.40.30.46.39.29.15.47.21.11.40.31.49.36.49.36.33.39.34.23.19.4.5.49.43.22.2.5.34.35
+//2018 36.23.19.4.8.44.20.40.25.39.8.32.34.38.12.34.2.5.5.16.1.21.20.7.2.2.33.30.10.36.6.43.21.36.30.3.25.18.42.24.43.35.9.42.14.43.41.8.38.11.43.39.26.25.38.18.28.1.32.16.9.25.47.33.27.22.24.18.47.26.41.27.10.29.19.2.22.45.47.20.40.12.38.17.30.28.30.12.13.37.24.37.20.4.34.27.2.13.37.13.47.33.37.35.41.26.46.30.4.36.16.19.27.8.15.41.1.37.5.15.21.43.38.12.46.12.17.8.29.44.45.38.34.32.39.35.47.19.34.43.22.39.22.45.42.4.23.37.43
+		var cal = document.getElementById('cal');
+		var arrTO = [];
+		cal.onclick = function () {
+			var arrT = [
+				[1,2,3,4,5,6,8,9,11,12,13,14,16,17,19,20,21,22,23,25,26,27,28,29,31,32,33,36,37,38,39,40,41,42,43,46,47,48,49],
+			];
+			for(let i = 0; i < 10; i++){
+				arrT.push(create30());
+			}
+//			let arrT = ArrFilter(arrTO);
+			var val = document.getElementById('inp').value;
+			var valArr = val.split('.');
+			document.getElementById('res').innerHTML = '';
+			for(var z = 0; z < arrT.length; z++){
+				let arr = arrT[z];
+				var result = [];
+				var p = 0;
+				var span = document.createElement('span');
+				span.innerHTML = arr + '<br/><br/>'
+				for(var i = 0; i < valArr.length; i++){
+					var item = valArr[i];
+					if(arr.indexOf((item*1)) > -1){
+						p++;
+						result.push({res: 1, p: p/(i+1)});
+						
+					}else{
+						result.push({res: 0, p: p/(i+1)});
+						
+					}
+					
+				}
+				
+				for(var j = 0; j < result.length; j++){
+					if(result[j].res === 0){
+						span.innerHTML += '<span class="red">' + result[j].res + ' ' + result[j].p + '<span/><br/>'
+					}else{
+						span.innerHTML += '<span>' + result[j].res + ' ' + result[j].p + '<span/><br/>'
+					}
+					
+				}
+				
+				document.getElementById('res').appendChild(span);
+			}
+			
+		
+
+			
+		}
+		function f(n,m){
+	        if(n < m) return 0;
+	        if(n == m) return 1;
+	        if(m == 0) return 1;
+	        
+	        return f(n-1, m-1)+f(n - 1, m);
+	    }
+	    function main() {
+	        
+	        var k = f(10, 6);
+	        document.write(k);
+			document.write('<br/>');
+	    }
+	main();
+	var ind = 0;
+		function combine_decrease(arr, start, result, count, NUM)
+	  {
+	  	
+	    var i;
+	    for (i = start; i >=count; i--)
+	   {
+	     result[count - 1] = i - 1;
+	     if (count > 1)
+	     {
+	     combine_decrease(arr, i - 1, result, count - 1, NUM);
+	     }
+	   else
+	    {
+	      var j;
+	       ind++;
+//	      document.write(ind + ' ');
+			var a = [];
+	       for (j = NUM - 1; j >=0; j--){
+	       	a.push(arr[result[j]]);
+//	       	document.write(arr[result[j]] + ',');
+	       }
+	     
+//	       document.write("<br/>");
+			arrTO.push(a);
+	     }
+	   }
+	 }
+	  var arrS = [1, 2, 3, 4, 5, 6,7,8,9,10];
+	  var arrT = [];
+  var num = 5;
+   var result = new Array(num);
+ 		combine_decrease(arrS, arrS.length, result, num, num);
+ 		var limit = 2;
+	function ArrFilter(arr){
+		let res = [];
+		for(let i = 0; i < arr.length; i++){
+			let j = 0; let o = 0;
+			let d = 0, x = 0;
+			let item = arr[i];
+			item.forEach(function (v,k){
+				if(v%2 === 0){
+					o++;
+				}else{
+					j++;
+				}
+				if(v<=5){
+					x++;
+				}else{
+					d++;
+				}
+			})
+			if(j>=limit&&o>=limit && x>=limit&& d>=limit){
+				res.push(item);
+			}
+		}
+		return res;
+	}
+	function create30 (){
+		let res = [];
+		{
+//			1-10
+			let arr = [];
+			while(arr.length < 8){
+				let rand = Math.floor(Math.random()*10)+1;
+				if(arr.indexOf(rand) < 0){
+					arr.push(rand);
+				}
+			}
+			res = res.concat(arr);
+		}
+		{
+//			11-20
+			let arr = [];
+			while(arr.length < 8){
+				let rand = Math.floor(Math.random()*10)+11;
+				if(arr.indexOf(rand) < 0){
+					arr.push(rand);
+				}
+			}
+			res = res.concat(arr);
+		}
+		{
+//			21-30
+			let arr = [];
+			while(arr.length < 8){
+				let rand = Math.floor(Math.random()*10)+21;
+				if(arr.indexOf(rand) < 0){
+					arr.push(rand);
+				}
+			}
+			res = res.concat(arr);
+		}
+		{
+//			31-40
+			let arr = [];
+			while(arr.length < 8){
+				let rand = Math.floor(Math.random()*10)+31;
+				if(arr.indexOf(rand) < 0){
+					arr.push(rand);
+				}
+			}
+			res = res.concat(arr);
+		}
+		{
+//			41-49
+			let arr = [];
+			while(arr.length < 7){
+				let rand = Math.floor(Math.random()*9)+41;
+				if(arr.indexOf(rand) < 0){
+					arr.push(rand);
+				}
+			}
+			res = res.concat(arr);
+		}
+		
+		
+		return res.sort(function(a,b){return a-b});
+	}
+	</script>
+</html>
