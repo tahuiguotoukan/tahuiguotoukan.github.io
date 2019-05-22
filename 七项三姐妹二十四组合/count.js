@@ -126,6 +126,64 @@ function renderBuyStage(d)
 		res.appendChild(p);
 	}
 }
+function calculateWinInEachPeriod(d){
+	let arr = [];
+	d.forEach((v, i) => {
+		if(i === 0){
+			if(v.res === 0){
+				arr.push(-30);
+			}else{
+				arr.push(18.6);
+			}
+		}else{
+			if(v.res === 0){
+				arr.push(arr[i-1] - 30);
+			}else{
+				arr.push(arr[i-1] + 18.6);
+			}
+		}
+	})
+	return arr;
+}
+
+function renderChart(){
+	let arr = calculateWinInEachPeriod(res);
+	var ctx = document.getElementById('myChart').getContext('2d');
+	let a = [];
+	for(var i = 0; i < arr.length;i++)
+   { 
+    a.push((i+1)/3*(18.6*2-30));//将数组arr2中的值写入data
+   }
+	var chart = new Chart(ctx, {
+	    // The type of chart we want to create
+	    type: 'line',
+	
+	    // The data for our dataset
+	    data: {
+	        labels: sequence,
+	        datasets: [
+		        {
+		            label: '实际值',
+		            backgroundColor: 'rgb(255, 255, 255, 0)',
+		            borderColor: 'rgb(255, 99, 132)',
+		            data: arr
+		        },
+		        {
+		            label: '理论值',
+		            backgroundColor: 'rgb(255, 255, 255, 0)',
+		            borderColor: 'rgb(245, 199, 132)',
+		            data: a
+		        }
+	        ]
+	    },
+		
+	    // Configuration options go here
+	    options: {}
+	    
+	    //只要低于理论值的时候买入，持有一段时间在下一个波峰开始下行的时候退场，而且高点与理论值的差值越来越稳定
+	});
+	 
+}
 renderSquence();
 for(let k in data){
 	renderDataTD(data[k], k);
@@ -134,3 +192,5 @@ let res = groupResult();
 renderRateAndRes(res);
 let stage = getBuyStage(res);
 renderBuyStage(stage);
+console.error(calculateWinInEachPeriod(res));
+renderChart();

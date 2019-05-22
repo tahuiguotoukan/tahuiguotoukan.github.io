@@ -27,13 +27,13 @@
 		var cal = document.getElementById('cal');
 		var arrTO = [];
 		cal.onclick = function () {
-			var arrT = [
-				[1,2,3,4,5,6,8,9,11,12,13,14,16,17,19,20,21,22,23,25,26,27,28,29,31,32,33,36,37,38,39,40,41,42,43,46,47,48,49],
+			/*var arrT = [
+				[1,4,5,7,8,9,14,15,16,18,19,20,23,24,25,27,29,30,31,32,33,38,39,40,41,43,44,46,48,49]
 			];
 			for(let i = 0; i < 10; i++){
 				arrT.push(create30());
-			}
-//			let arrT = ArrFilter(arrTO);
+			}*/
+			let arrT = ArrFilter(arrTO);
 			var val = document.getElementById('inp').value;
 			var valArr = val.split('.');
 			document.getElementById('res').innerHTML = '';
@@ -57,7 +57,7 @@
 				}
 				
 				for(var j = 0; j < result.length; j++){
-					if(result[j].res === 0){
+					if(result[j].res === 0 && result[j].p >= 0.5){
 						span.innerHTML += '<span class="red">' + result[j].res + ' ' + result[j].p + '<span/><br/>'
 					}else{
 						span.innerHTML += '<span>' + result[j].res + ' ' + result[j].p + '<span/><br/>'
@@ -146,10 +146,11 @@
 	}
 	function create30 (){
 		let res = [];
+		let num = 6;
 		{
 //			1-10
 			let arr = [];
-			while(arr.length < 8){
+			while(arr.length < num){
 				let rand = Math.floor(Math.random()*10)+1;
 				if(arr.indexOf(rand) < 0){
 					arr.push(rand);
@@ -160,7 +161,7 @@
 		{
 //			11-20
 			let arr = [];
-			while(arr.length < 8){
+			while(arr.length < num){
 				let rand = Math.floor(Math.random()*10)+11;
 				if(arr.indexOf(rand) < 0){
 					arr.push(rand);
@@ -171,7 +172,7 @@
 		{
 //			21-30
 			let arr = [];
-			while(arr.length < 8){
+			while(arr.length < num){
 				let rand = Math.floor(Math.random()*10)+21;
 				if(arr.indexOf(rand) < 0){
 					arr.push(rand);
@@ -182,7 +183,7 @@
 		{
 //			31-40
 			let arr = [];
-			while(arr.length < 8){
+			while(arr.length < num){
 				let rand = Math.floor(Math.random()*10)+31;
 				if(arr.indexOf(rand) < 0){
 					arr.push(rand);
@@ -193,7 +194,7 @@
 		{
 //			41-49
 			let arr = [];
-			while(arr.length < 7){
+			while(arr.length < num){
 				let rand = Math.floor(Math.random()*9)+41;
 				if(arr.indexOf(rand) < 0){
 					arr.push(rand);
