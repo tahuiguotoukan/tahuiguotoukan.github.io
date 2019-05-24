@@ -149,11 +149,21 @@ function calculateWinInEachPeriod(d){
 function renderChart(){
 	let arr = calculateWinInEachPeriod(res);
 	var ctx = document.getElementById('myChart').getContext('2d');
-	let a = [];
+	let a = [];//理论值
+	let b = [];//均值
 	for(var i = 0; i < arr.length;i++)
-   { 
-    a.push((i+1)/3*(18.6*2-30));//将数组arr2中的值写入data
-   }
+    { 
+       a.push((i+1)/3*(18.6*2-30));
+       b.push((() => {
+	      	let t = 0;
+	      	for(let j = 0; j <= i; j++){
+	      		t+=arr[j];
+	      	}
+	      	return t/(i+1);
+	      })());
+    }
+    
+
 	var chart = new Chart(ctx, {
 	    // The type of chart we want to create
 	    type: 'line',
@@ -173,6 +183,12 @@ function renderChart(){
 		            backgroundColor: 'rgb(255, 255, 255, 0)',
 		            borderColor: 'rgb(245, 199, 132)',
 		            data: a
+		        },
+		        {
+		            label: '均值',
+		            backgroundColor: 'rgb(255, 255, 255, 0)',
+		            borderColor: 'rgb(225, 109, 232)',
+		            data: b
 		        }
 	        ]
 	    },
