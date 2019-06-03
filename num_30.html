@@ -76,6 +76,7 @@
 					<option value="2">三姐妹-体表-直线</option>
 					<option value="3">三姐妹-体表-二尾</option>
 					<option value="4">杀头-杀肖-杀波-杀尾</option>
+					<option value="5">三姐妹-体表-二肖-一尾</option>
 				</select>
 			</div>
 			<div id="select">
@@ -241,7 +242,12 @@
 				data.push(baseData[7]);
 				data.push(baseData[8]);
 			}
-
+			else if(val === 5){
+				data.push(baseData[0]);
+				data.push(baseData[3]);
+				data.push(baseData[5]);
+				data.push(baseData[6]);
+			}
 			renderPage();
 		}
 		function renderPage(){
