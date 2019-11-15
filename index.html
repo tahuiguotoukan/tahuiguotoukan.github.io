@@ -16,14 +16,20 @@
             border: 1px solid black;
             border-bottom: none;
             display: flex;
-            width: 40%;
+            width: 480px;
         }
+        
         #record>ul li{
-            flex: 2;
             border-left: 1px solid black;
             text-align: center;
             display: inline-block;
             padding: 6px 0;
+        }
+        #record>ul li.issue, #record>ul li.code{
+            flex: 3;
+        }
+        #record>ul li.status{
+            flex: 2;
         }
         #record>ul li.position, #record>ul li.index, #record>ul li.price{
             flex: 1;
@@ -34,12 +40,13 @@
         #record>ul:last-child{
             border-bottom: 1px solid black;
         }
+        
     </style>
 </head>
 <body>
     <div id="record">
         <ul>
-            <li clss="issue">期数</li>
+            <li class="issue">期数</li>
             <li class="position">名次</li>
             <li class="code">号码</li>
             <li class="index">次数</li>
