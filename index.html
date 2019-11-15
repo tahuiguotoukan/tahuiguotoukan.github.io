@@ -4,10 +4,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        ul,li{
+            padding: 0;
+            margin: 0;
+        }
+        li{
+            list-style: none;
+        }
+        #record>ul{
+            border: 1px solid black;
+            border-bottom: none;
+            display: flex;
+            width: 40%;
+        }
+        #record>ul li{
+            flex: 2;
+            border-left: 1px solid black;
+            text-align: center;
+            display: inline-block;
+            padding: 6px 0;
+        }
+        #record>ul li.position, #record>ul li.index, #record>ul li.price{
+            flex: 1;
+        }
+        #record>ul li:first-child{
+            border-left: none;
+        }
+        #record>ul:last-child{
+            border-bottom: 1px solid black;
+        }
+    </style>
 </head>
 <body>
-    Hello World
-    <div id="record"></div>
+    <div id="record">
+        <ul>
+            <li clss="issue">期数</li>
+            <li class="position">名次</li>
+            <li class="code">号码</li>
+            <li class="index">次数</li>
+            <li class="price">倍数</li>
+            <li class="status">结果</li>
+        </ul>
+    </div>
 </body>
 <script>
     function CreateXMLHttpRequest()
@@ -45,35 +84,53 @@
         // xmlobj.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;");  //设置请求头信息
         xmlobj.onreadystatechange = function (event) {
             console.log(event.target);
-            
+            let box = document.getElementById('record');
             if(event.target.readyState == 4 && event.target.status == 200){
-                document.getElementById('record').innerHTML = '';
                 let data = JSON.parse(event.target.responseText);
                 let arr = [];
-                for(let i = 0; i < data.bought.length; i++){
+                let len = data.bought.length > 20 ? (data.bought.length - 20) : 0;
+                for(let i = len; i < data.bought.length; i++){
                     arr = arr.concat(data.bought[i]);
                 }
                 arr = arr.concat(data.buying);
-                let str = '';
+                let children = box.children;
+                
                 for(let i = 0; i < arr.length; i++){
                     let item = arr[i];
+                    let node = children[i+1];
+                    if(!node){
+                        node = document.createElement('ul');
+                        node.innerHTML = `<li class="issue"></li>
+                                        <li class="position"></li>
+                                        <li class="code"></li>
+                                        <li class="index"></li>
+                                        <li class="price"></li>
+                                        <li class="status"></li>`
+                        box.appendChild(node);
+                    }
+                    node.getElementsByClassName('issue')[0].innerText = item.issue + '期';
+                    node.getElementsByClassName('position')[0].innerText = (item.position*1 + 1) + '名';
+                    node.getElementsByClassName('code')[0].innerText = item.code.join(', ');
+                    node.getElementsByClassName('index')[0].innerText = (item.index*1 + 1) + '次';
+                    node.getElementsByClassName('price')[0].innerText = item.price;
                     if(item.status == 0)
                     {
-                        str += item.issue + '期 买' + (item.position+1) + '名 追' + item.code+ ' 第' + (item.index + 1) + '次 ' + item.price + '元' + '</br>';
+                        node.getElementsByClassName('status')[0].innerText = '追号中';
                     }
                     else if(item.status == 1)
                     {
-                        str += item.issue + '期 买' + (item.position+1) + '名 追' + item.code+ ' 第' + (item.index + 1) + '次 ' + item.price + '元 已中奖' + '</br>';
+                        node.style.color = 'orange';
+                        node.getElementsByClassName('status')[0].innerText = '已中奖';
                     }
                     else if(item.status == 2)
                     {
-                        str += item.issue + '期 买' + (item.position+1) + '名 追' + item.code+ ' 第' + (item.index + 1) + '次 ' + item.price + '元 未中奖，计划失败' + '</br>';
+                        node.style.color = 'red';
+                        node.getElementsByClassName('status')[0].innerText = '计划失败';
                     }
                     
                 }
-                document.getElementById('record').innerHTML = str;
             }
-            else
+            else if(event.target.status != 200)
             {
                 document.getElementById('record').innerHTML = event.target.readyState+ ' ' + event.target.status;
             }
