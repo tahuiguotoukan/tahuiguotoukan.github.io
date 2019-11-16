@@ -138,7 +138,7 @@
                     
                 }
             }
-            else if(event.target.status != 200)
+            else if(event.target.readyState == 4 && event.target.status != 200)
             {
                 document.getElementById('record').innerHTML = event.target.readyState+ ' ' + event.target.status;
             }
