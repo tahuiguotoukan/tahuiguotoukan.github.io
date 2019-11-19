@@ -103,7 +103,7 @@
                 arr = arr.concat(data.buying);
                 var children = box.children;
                 //在表格行数大于数据数时需要删掉多余的行数
-                if(children.length > arr.length)
+                if(children.length > arr.length + 1)  //多了一行表头
                 {
                     deleteRow(arr.length);
                 }
@@ -154,7 +154,7 @@
     function deleteRow(dataLen){
         var box = document.getElementById('record');
         let children = box.children;
-        let cha = children.length - dataLen;
+        let cha = children.length - dataLen - 1;  //多了一行表头
         for(let i = 0; i < cha; i++){
             box.removeChild(children[0]);
         }
