@@ -91,10 +91,10 @@
         xmlobj.setRequestHeader("contentType","text/html;charset=uft-8") //指定发送的编码
         xmlobj.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;");  //设置请求头信息
         xmlobj.onreadystatechange = function (event) {
-            console.log(event.target);
             var box = document.getElementById('record');
             if(event.target.readyState == 4 && event.target.status == 200){
                 var data = JSON.parse(event.target.responseText);
+                console.log(data);
                 var arr = [];
                 var len = data.bought.length > 20 ? (data.bought.length - 20) : 0;
                 for(var i = len; i < data.bought.length; i++){
@@ -102,7 +102,13 @@
                 }
                 arr = arr.concat(data.buying);
                 var children = box.children;
-                
+                //在表格行数大于数据数时需要删掉多余的行数
+                if(children.length > arr.length)
+                {
+                    deleteRow(arr.length);
+                }
+                console.log('数据条数', arr.length);
+                console.log('表格行数', children.length);
                 for(var i = 0; i < arr.length; i++){
                     var item = arr[i];
                     var node = children[i+1];
@@ -138,13 +144,20 @@
                     }
                     
                 }
+                let  body = document.getElementsByTagName('body')[0];
+                body.scrollTop = body.scrollHeight;
             }
-            else if(event.target.readyState == 4 && event.target.status != 200)
-            {
-                document.getElementById('record').innerHTML = event.target.readyState+ ' ' + event.target.status;
-            }
+            
         };  //判断URL调用的状态值并处理
         xmlobj.send(); //设置为发送给服务器数据
+    }
+    function deleteRow(dataLen){
+        var box = document.getElementById('record');
+        let children = box.children;
+        let cha = children.length - dataLen;
+        for(let i = 0; i < cha; i++){
+            box.removeChild(children[0]);
+        }
     }
     requestBuyData();
     setInterval(function (){
