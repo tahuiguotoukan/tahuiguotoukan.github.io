@@ -108,7 +108,7 @@
     </div>
     
     
-    <audio controls preload id="music" loop>
+    <audio controls preload id="music" hidden loop>
         <source src="horse.mp3" type="audio/mpeg">
             <source src="horse.ogg" type="audio/ogg">
         Your browser does not support this audio format.
@@ -226,7 +226,6 @@
                     }
                     
                 }
-                showAlert();
                 let buying = data.buying;
                 if(buying.length === 3 && issue != buying[buying.length - 1].issue){
                     issue = buying[buying.length - 1].issue;
