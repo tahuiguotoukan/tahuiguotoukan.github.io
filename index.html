@@ -94,7 +94,6 @@
             var box = document.getElementById('record');
             if(event.target.readyState == 4 && event.target.status == 200){
                 var data = JSON.parse(event.target.responseText);
-                console.log(data);
                 var arr = [];
                 var len = data.bought.length > 20 ? (data.bought.length - 20) : 0;
                 for(var i = len; i < data.bought.length; i++){
@@ -107,8 +106,7 @@
                 {
                     deleteRow(arr.length);
                 }
-                console.log('数据条数', arr.length);
-                console.log('表格行数', children.length);
+                console.log(calculateLen(data.bought));
                 for(var i = 0; i < arr.length; i++){
                     var item = arr[i];
                     var node = children[i+1];
@@ -163,6 +161,30 @@
     setInterval(function (){
         requestBuyData()
     },2000);
-
+    function calculateLen(d){
+   
+   var a = [];
+   let date = new Date();
+   let y = date.getFullYear()+'';
+   let m = (date.getMonth()+1)+'';
+   let day = date.getDate()+'';
+   let t = y+m+day;
+   for(let i = 0; i < d.length; i++){
+       if(d[i][0].issue*1 >= (t+'002')*1 && d[i][0].issue*1 <= (t+'180')*1){
+           a.push(d[i]);
+       }
+   }
+   var l = 0;
+   var r = 0;
+   for(let i = 0; i < a.length; i++){
+       if(a[i].length <= 3){
+           l+= a[i].length;
+       }
+       if(a[i].length >= 4){
+           r++;
+       }
+   }
+   return l + ' ' + r+' ' + (l*4.7-r*55);
+}
 </script>
 </html>
