@@ -29,7 +29,10 @@
             padding: 3px 0;
             font-size: 14px;
         }
-        #record>ul li.issue, #record>ul li.code{
+        #record>ul li.issue{
+            flex: 2;
+        }
+        #record>ul li.code{
             flex: 3;
         }
         #record>ul li.status{
@@ -54,7 +57,7 @@
             <li class="position">名次</li>
             <li class="code">号码</li>
             <li class="index">次数</li>
-            <li class="price">倍数</li>
+            <!-- <li class="price">倍数</li> -->
             <li class="status">结果</li>
         </ul>
     </div>
@@ -99,15 +102,19 @@
             if(event.target.readyState == 4 && event.target.status == 200){
                 var data = JSON.parse(event.target.responseText);
                 var arr = [];
-                var len = data.bought.length > 20 ? (data.bought.length - 20) : 0;
+                var len = data.bought.length > 50 ? (data.bought.length - 50) : 0;
                 for(var i = len; i < data.bought.length; i++){
-                    arr = arr.concat(data.bought[i]);
+                    arr.push(data.bought[i]);
                 }
-                arr = arr.concat(data.buying);
+                if(data.buying && data.buying.length > 0){
+                    arr.push(data.buying);
+                }
+                
                 
                 console.log(calculateLen(data.bought));
-                if(arr[arr.length - 1].issue != global_issue){
-                    global_issue = arr[arr.length - 1].issue;
+                let new_stage = arr[arr.length -1];
+                if(new_stage[new_stage.length - 1].issue != global_issue){
+                    global_issue = new_stage[new_stage.length - 1].issue;
                     renderTable(arr);
                 }
             }
@@ -145,26 +152,44 @@
                                 +'<li class="position"></li>'
                                 +'<li class="code"></li>'
                                 +'<li class="index"></li>'
-                                +'<li class="price"></li>'
+                                // +'<li class="price"></li>'
                                 +'<li class="status"></li>'
                 box.appendChild(node);
             }
-            node.getElementsByClassName('issue')[0].innerText = item.issue + '期';
-            node.getElementsByClassName('position')[0].innerText = (item.position*1 + 1) + '名';
-            node.getElementsByClassName('code')[0].innerText = item.code.join(', ');
-            node.getElementsByClassName('index')[0].innerText = (item.index*1 + 1) + '次';
-            node.getElementsByClassName('price')[0].innerText = item.price;
-            if(item.status == 0)
+            let lastItem = item[item.length -1];
+            let issues = item[0].issue%1000 + '-' + lastItem.issue%1000;
+            if(lastItem.status == 0){
+                let s = parseInt(item[0].issue%1000) + 4;
+                if(s < 10){
+                    s = '00' + s.toString();
+                }
+                else if(s < 100 && s >= 10)
+                {
+                    s = '0' + s.toString();
+                }
+                issues = item[0].issue.substr(8) + '-' + s;
+            }
+            node.getElementsByClassName('issue')[0].innerText = issues + '期';
+            node.getElementsByClassName('position')[0].innerText = (lastItem.position*1 + 1) + '名';
+            node.getElementsByClassName('code')[0].innerText = lastItem.code.join(', ');
+            node.getElementsByClassName('index')[0].innerText = (lastItem.index*1 + 1) + '次';
+            // node.getElementsByClassName('price')[0].innerText = lastItem.price;
+            if(lastItem.status == 0)
             {
                 node.style.color = 'black';
                 node.getElementsByClassName('status')[0].innerText = '追号中';
             }
-            else if(item.status == 1)
+            else if(lastItem.status == 1)
             {
                 node.style.color = 'orange';
+                if(item.length <= 3)
+                {
+                    node.style.color = 'green';
+                }
                 node.getElementsByClassName('status')[0].innerText = '已中奖';
             }
-            else if(item.status == 2)
+            
+            else if(lastItem.status == 2)
             {
                 node.style.color = 'red';
                 node.getElementsByClassName('status')[0].innerText = '计划失败';
