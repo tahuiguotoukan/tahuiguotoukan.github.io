@@ -18,14 +18,15 @@
             list-style: none;
         }
         #record{
-            padding: 10px;
-            width: 100%;
+            width: 90%;
+            margin: 10px auto;
         }
         #record>ul{
             border: 1px solid black;
             border-bottom: none;
             display: flex;
-            width: 100%;
+            width: 98%;
+            margin: 0 auto;
         }
         
         #record>ul li{
@@ -163,7 +164,7 @@
                 box.appendChild(node);
             }
             let lastItem = item[item.length -1];
-            let issues = item[0].issue%1000 + '-' + lastItem.issue%1000;
+            let issues = (item[0].issue+'').substr(8) + '-' + (lastItem.issue+'').substr(8);
             if(lastItem.status == 0){
                 let s = parseInt(item[0].issue%1000) + 4;
                 if(s < 10){
@@ -173,7 +174,7 @@
                 {
                     s = '0' + s.toString();
                 }
-                issues = item[0].issue.substr(8) + '-' + s;
+                issues = (item[0].issue+'').substr(8) + '-' + s;
             }
             node.getElementsByClassName('issue')[0].innerText = issues + '期';
             node.getElementsByClassName('position')[0].innerText = (lastItem.position*1 + 1) + '名';
