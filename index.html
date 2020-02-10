@@ -100,7 +100,7 @@
         var xmlobj = CreateXMLHttpRequest(); //创建对象
         
         
-        xmlobj.open("get", "http://kuaicai168.tpddns.cn:6060/reqData", true); //调用weather.php
+        xmlobj.open("get", "http://127.0.0.1:6060/reqData", true); //调用weather.php
         xmlobj.setRequestHeader("cache-control","no-cache");
         xmlobj.setRequestHeader("contentType","text/html;charset=uft-8") //指定发送的编码
         xmlobj.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;");  //设置请求头信息
@@ -189,7 +189,7 @@
             else if(lastItem.status == 1)
             {
                 node.style.color = 'orange';
-                if(item.length <= 3)
+                if(item.length <= 1)
                 {
                     node.style.color = 'green';
                 }
