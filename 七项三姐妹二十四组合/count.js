@@ -19,6 +19,13 @@ function renderChart(){
 			data: arr
 		})
 	}
+
+	let l = data['234'].length;
+	sequence = [];
+	for(let i = 1; i<= l; i++)
+	{
+		sequence.push(i);
+	}
 	var chart = new Chart(ctx, {
 	    // The type of chart we want to create
 	    type: 'line',

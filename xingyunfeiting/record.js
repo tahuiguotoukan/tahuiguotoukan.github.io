@@ -1,8 +1,8 @@
 //第一期开奖之后才能开始启动
 var every_day_money = [];
 var every_plan_win = [];
-var startTime = 20200316;
-var endTime = startTime;
+var startTime = 20200301;
+var endTime = 20200331;
 function openListener ()
 {
     if(test)
@@ -103,7 +103,10 @@ function initData ()
 {
     //初始化参数
     window.test = false;
-    window.beishu = 14;
+    window.gameId = 56;
+    window.beishu =1;
+    window.initMoney = 423;
+    window.winMoney = 2.95*beishu*3;
     window.record_arr = [];
     window.record_obj = {};
     window.listen_timer = null;
@@ -120,8 +123,7 @@ function initData ()
         // }
     };
     window.url = 'https://www.rgcp96.com';
-    window.initMoney = 675;
-    window.winMoney = 2.95*beishu*3;
+    
     let d = new Date();
     let m = d.getMonth() + 1;
     m = m >= 10 ? m + '' : '0' + m;
@@ -200,7 +202,7 @@ function update ()
 function planA ()
 {
     let plan_name = 'planA';
-    initPlandata(plan_name, [1, 4, 10, 26, 67, 169]);
+    initPlandata(plan_name, [1, 3, 7, 15, 31, 63, 127, 256]);
     compareCode(plan_name, StartnewPlanA);
 };
 function StartnewPlanA()
@@ -209,43 +211,7 @@ function StartnewPlanA()
     let current = plan.current;
     let record = plan.record;
     let m = getPlanWinMoney(record, plan.m_arr);
-    plan.win.push(m);
-    if(!plan.isCanBuy || cur_issue.substr(cur_issue.length - 3)*1 > 175) return;
-    
-    for(let i = 0; i < 10; i++)
-    {
-        let n = record_arr[0][i];
-        if(
-            [2,9].indexOf(n) >= 0
-        )
-        {
-            let code = [2,3,4,5,6,7];
-
-            code.sort((a,b) => {return a - b});
-            current.push({
-                issue: cur_issue,
-                code: code,
-                status: 0,
-                position: i
-            })
-            break;
-        }
-    }
-    
-}
-
-function planE ()
-{
-    let plan_name = 'planE';
-    initPlandata(plan_name, [1, 3, 5, 8, 12, 18, 27, 39, 57]);
-    compareCode(plan_name, StartnewPlanE);
-};
-function StartnewPlanE ()
-{
-    let plan = plan_record['planE'];
-    let current = plan.current;
-    let record = plan.record;
-    let m = getPlanWinMoney(record, plan.m_arr);
+    let len = 5;
     plan.win.push(m);
 //     if(m > 10000 || !plan.isCanBuy || cur_issue.substr(cur_issue.length - 3)*1 > 170) return;
     if(record_arr.length >= 20)
@@ -281,15 +247,124 @@ function StartnewPlanE ()
             })
             let min = arr[0].code;
             let max = arr[arr.length - 1].code;
-            if(record_arr[0][i] !== 1 
+            if(
+                record_arr[0][i] !== 1 
                 && record_arr[0][i] !== 10 
-                && (Math.abs(record_arr[0][i] - record_arr[1][i]) > 1 && Math.abs(record_arr[0][i] - record_arr[1][i]) < 7))
+                && (Math.abs(record_arr[0][i] - record_arr[1][i]) > 2 && Math.abs(record_arr[0][i] - record_arr[1][i]) < 3)
+            )
             {
+                
+                let n = record_arr[0][i];
+                let l = arr[0].code*1;
+                let r = arr[9].code*1;
+                let code = [];
+                if(n > 5)
+                {
+                    for(let i = 1; i <= 10; i++)
+                    {
+                        if(i !== l && i !== r && code.length < len)
+                        {
+                            code.push(i)
+                        }
+                    }
+                }
+                else
+                {
+                    for(let i = 10; i >=1; i--)
+                    {
+                        if(i !== l && i !== r && code.length < len)
+                        {
+                            code.push(i)
+                        }
+                    }
+                }
+                
+
+                code.sort((a,b) => {return a - b});
+                if(code.length === len)
+                {
+                    current.push({
+                        issue: cur_issue,
+                        code: code,
+                        status: 0,
+                        position: i
+                    })
+                }
+                break;
+            }
+
+        }
+    }
+}
+
+function planE ()
+{
+    let plan_name = 'planE';
+    initPlandata(plan_name, [1,3,7,15,31]);
+    compareCode(plan_name, StartnewPlanE);
+};
+function StartnewPlanE ()
+{
+    let plan = plan_record['planE'];
+    let current = plan.current;
+    let record = plan.record;
+    let m = getPlanWinMoney(record, plan.m_arr);
+    plan.win.push(m);
+    if(cur_issue.substr(cur_issue.length - 3)*1 > 175) return;
+    if(record_arr.length >= 30)
+    {
+        for(let i = 0; i < 10; i++)
+        {
+            let num = {
+                1: 0,
+                2: 0,
+                3: 0,
+                4: 0,
+                5: 0,
+                6: 0,
+                7: 0,
+                8: 0,
+                9: 0,
+                10: 0
+            }
+            for(let j = 0; j < 30; j++)
+            {
+                let c = record_arr[j][i];
+                
+                num[c]++;
+                
+            }
+            let arr = [];
+            for(let k in num)
+            {
+                arr.push({count: num[k], code: k});                
+            }
+            arr.sort((a, b) => {
+                return a.count - b.count;
+            })
+            let min = arr[0].code;
+            let max = arr[arr.length - 1].code;
+            if(
+                record_arr[0][i] !== 1 
+                && record_arr[0][i] !== 10 
+                && (Math.abs(record_arr[0][i] - record_arr[1][i]) > 1 && Math.abs(record_arr[0][i] - record_arr[1][i]) < 4)
+            )
+            {
+                
                 let n = record_arr[0][i];
                 let s = 0;
-                let code = [arr[s].code*1,arr[s+8].code*1,arr[s+9].code*1];
+                let code = [arr[s].code*1,arr[s+1].code*1,arr[s+2].code*1,arr[s+3].code*1,arr[s+4].code*1];
+                
+//                 while(code.length < 5)
+//                 {
+//                     let rand = Math.floor(Math.random()*10)+1;
+//                     if(code.indexOf(rand) < 0)
+//                     {
+//                         code.push(rand);
+//                     }
+//                 }
                 code.sort((a,b) => {return a - b});
-                if(code.length === 3)
+                if(code.length === 5)
                 {
                     current.push({
                         issue: cur_issue,
@@ -405,7 +480,8 @@ function showPlan ()
             })
         }
         console.log('current table is ', k);
-        console.table(r.slice(r.length > 9 ? r.length - 9 : 0), ['issue', 'code', 'position', 'length', 'status']);
+//         console.table(r.slice(r.length > 9 ? r.length - 9 : 0), ['issue', 'code', 'position', 'length', 'status']);
+        console.table(r, ['issue', 'code', 'position', 'length', 'status']);
         let win = getPlanWinMoney(r, item.m_arr)
         total += win;
         console.log(win);
@@ -457,29 +533,29 @@ function buyPlan ()
 {
     getMoney()
     .then((money) => {
-        money = money*1;
-        if(money - initMoney >= winMoney) return;
-        let plan = plan_record.planE;
-        let item = plan.current[0];
-        if(!item) return;
-        let p_code = item.code;
-        let c = [];
-        for(let i = 1; i <= 10; i++)
-        {
-            if(p_code.indexOf(i) <= -1)
-            {
-                c.push(i);
-            }
-        }
-        if(c.length === 7)
-        {
-            buyAction({
-                issue: cur_issue,
-                code: c,
-                position: item.position
-            }, 1*beishu);
-        }
-        /*let m = [1, 3, 5, 8, 12, 18, 27, 39, 57];
+//         money = money*1;
+//         if(money - initMoney >= winMoney) return;
+//         let plan = plan_record.planE;
+//         let item = plan.current[0];
+//         if(!item) return;
+//         let p_code = item.code;
+//         let c = [];
+//         for(let i = 1; i <= 10; i++)
+//         {
+//             if(p_code.indexOf(i) <= -1)
+//             {
+//                 c.push(i);
+//             }
+//         }
+//         if(c.length === 7)
+//         {
+//             buyAction({
+//                 issue: cur_issue,
+//                 code: c,
+//                 position: item.position
+//             }, 1*beishu);
+//         }
+        let m = [1,3,7,15,31];
         let t = 60;
         let arr = [];
         for(let k in plan_record)
@@ -507,7 +583,7 @@ function buyPlan ()
                 }, t);
                 
             }
-        }*/
+        }
     });
 }
 function getMoney()
@@ -538,7 +614,7 @@ function getHistory()
     
     return new Promise((resolve, reject) => {
         ajax({
-            url: url + '/static/data/'+dateStr+'55HistoryLottery.json?page=1&rows=15',
+            url: url + '/static/data/'+dateStr+gameId+'HistoryLottery.json?page=1&rows=15',
             method: 'GET',
             success: (responseText) => {
                 let data = JSON.parse(responseText);
@@ -560,9 +636,9 @@ function buyAction(data, money)
     let total_money = code.length*money;
     let turnNum = data.issue;
     let p = data.position;
-    let id = (55102+p)*100;
+    let id = 5671600+p*100;
     let params = {
-        'gameId': 55,
+        'gameId': gameId,
         'totalNums': code.length,
         'totalMoney': total_money,
         'betSrc': 0,
